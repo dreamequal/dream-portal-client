@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 
 import FeedItem from './FeedItem';
 
+export const ItemTypes = {
+    ANNOUNCEMENT: 'announcement',
+};
+
 class Feed extends Component {
     render() {
         const {
@@ -10,12 +14,18 @@ class Feed extends Component {
         } = this.props;
 
         return (
-            items.map((item) => (
-                <FeedItem
-                    {...item}
-                    key={item.title}
-                />
-            ))
+            <div>
+                {items.map((item) => (
+                    <FeedItem
+                        {...item}
+                        key={item.title}
+                    />
+                ))}
+
+                <div className="text-center">
+                    <button type="button" className="btn btn-secondary">Load More</button>
+                </div>
+            </div>
         )
     }
 }

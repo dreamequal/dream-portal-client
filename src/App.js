@@ -10,6 +10,7 @@ import Navbar, { NavbarAlignments } from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Resources from './pages/Resources/Resources';
 import Training from './pages/Training/Training';
+import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
             align: NavbarAlignments.RIGHT,
             tree: [
                 {
+                    title: 'Profile',
+                    link: '/user/123'
+                },
+                {
                     title: 'Settings',
                     link: '/settings'
                 }
@@ -41,7 +46,7 @@ function App() {
     return (
         <Router>
             <Navbar
-                logo="./logo.png"
+                logo="/logo.png"
                 tree={tree}
             />
             <Switch>
@@ -54,6 +59,12 @@ function App() {
                 <Route path="/resources">
                     <Resources />
                 </Route>
+                <Route
+                    path="/user/:username"
+                    render={(props) => (
+                        <Profile {...props} />
+                    )}
+                />
                 <Route path="/settings">
                     <Settings />
                 </Route>

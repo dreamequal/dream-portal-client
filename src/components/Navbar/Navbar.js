@@ -36,7 +36,15 @@ class Navbar extends Component {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     {item.tree.map((subItem) => {
-                        return <a className="dropdown-item" href={subItem.link} key={subItem.title}>{subItem.title}</a>;
+                        return (
+                            <Link
+                                key={subItem.title}
+                                className="dropdown-item"
+                                to={subItem.link}
+                            >
+                                {subItem.title}
+                            </Link>
+                        )
                     })}
                 </div>
             </li>
