@@ -5,10 +5,12 @@ import {
     Route,
 } from 'react-router-dom';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar, { NavbarAlignments } from './components/Navbar/Navbar';
 
 import Home from './pages/Home/Home';
 import Resources from './pages/Resources/Resources';
+import Training from './pages/Training/Training';
+import Settings from './pages/Settings/Settings';
 
 function App() {
     const tree = [
@@ -17,8 +19,22 @@ function App() {
             link: '/'
         },
         {
+            title: 'Training',
+            link: '/training'
+        },
+        {
             title: 'Resources',
             link: '/resources'
+        },
+        {
+            title: 'My Account',
+            align: NavbarAlignments.RIGHT,
+            tree: [
+                {
+                    title: 'Settings',
+                    link: '/settings'
+                }
+            ]
         }
     ];
 
@@ -32,8 +48,14 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
+                <Route path="/training">
+                    <Training />
+                </Route>
                 <Route path="/resources">
                     <Resources />
+                </Route>
+                <Route path="/settings">
+                    <Settings />
                 </Route>
             </Switch>
         </Router>
