@@ -4,21 +4,24 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
+import { useAuth0 } from "./utils/react-auth0-spa";
+import PrivateRoute from "./components/Navigation/PrivateRoute/PrivateRoute";
 
-import Navbar, { NavbarAlignments } from './components/Navbar/Navbar';
+import Navbar, { NavbarAlignments } from './components/Navigation/Navbar/Navbar';
 
-import Home from './pages/Home/Home';
+/**
+ * Pages
+ */
+import Feed from './pages/Feed/Feed';
 import Resources from './pages/Resources/Resources';
 import Training from './pages/Training/Training';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 
 function App() {
+    const { loading } = useAuth0();
+
     const tree = [
-        {
-            title: 'Home',
-            link: '/'
-        },
         {
             title: 'Training',
             link: '/training'
@@ -33,7 +36,7 @@ function App() {
             tree: [
                 {
                     title: 'Profile',
-                    link: '/user/123'
+                    link: '/profile'
                 },
                 {
                     title: 'Settings',
@@ -51,7 +54,7 @@ function App() {
             />
             <Switch>
                 <Route exact path="/">
-                    <Home />
+                    <Feed />
                 </Route>
                 <Route path="/training">
                     <Training />
@@ -59,15 +62,12 @@ function App() {
                 <Route path="/resources">
                     <Resources />
                 </Route>
-                <Route
-                    path="/user/:username"
-                    render={(props) => (
-                        <Profile {...props} />
-                    )}
-                />
-                <Route path="/settings">
+                <PrivateRoute path="/profile">
+                    <Profile />
+                </PrivateRoute>
+                <PrivateRoute path="/settings">
                     <Settings />
-                </Route>
+                </PrivateRoute>
             </Switch>
         </Router>
     );

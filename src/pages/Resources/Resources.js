@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 
-class Resources extends Component {
-    render() {
-        return (
-            <div className="container mt-5">
-                <div className="row">
-                    <div className="col">
-                        <h5 className="text-center mb-4">
-                            Resources
-                        </h5>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        
-                    </div>
-                </div>
+import Hero from "../../components/layout/Hero/Hero";
+
+const Resources = () => {
+    return (
+        <Hero>
+            <div className="container">
+                <span className="h1 mb-0 text-white d-block">
+                    Resources
+                </span>
+                <p className="text-white mt-1">
+                    Files, documents, and downloads for your Chapter.
+                </p>
             </div>
-        )
-    }
+        </Hero>
+    );
 }
 
 export default Resources;

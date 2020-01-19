@@ -3,36 +3,37 @@ import PropTypes from 'prop-types';
 
 import { ItemTypes } from './Feed';
 
-class FeedItem extends Component {
-    render() {
-        const {
-            title,
-            author,
-            date,
-            body,
-            type,
-        } = this.props;
-
-        return (
-            <div className="card mb-3">
-                <div className="card-header">
-                    {title}
-                    { type === ItemTypes.ANNOUNCEMENT ? <span className="badge badge-secondary ml-1 badge-info">Announcement</span> : null }
-                </div>
-                <div className="card-body">
-                    <div className="mb-3">
-                        <i className="card-subtitle text-muted">
-                            Posted {date} by {author}
-                        </i>
-                    </div>
-                    <p className="card-text">
-                        {body}
-                    </p>
-                </div>
+const FeedItem = ({
+    title,
+    author,
+    date,
+    body,
+    type,
+}) => (
+    <div class="card">
+        <div class="card-header py-4 d-flex align-items-center">
+            <div>
+                <img
+                    alt="Image placeholder"
+                    src="https://placedog.net/500"
+                    class="avatar rounded-circle hover-shadow-lg hover-scale-110"
+                />
             </div>
-        )
-    }
-}
+            <div class="pl-3">
+                <div class="text-sm">
+                    <a href="#!" class="font-weight-bold">{author}</a>
+                    { type === ItemTypes.ANNOUNCEMENT ? <span className="badge badge-soft-info badge-pill ml-2">Announcement</span> : null }
+                </div>
+                <small class="d-block">{date}</small>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                {body}
+            </p>
+        </div>
+    </div>
+);
 
 FeedItem.propTypes = {
     title: PropTypes.string,

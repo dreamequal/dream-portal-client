@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class ProfileCard extends Component {
-    render() {
-        const {
-            avatar,
-            name,
-            location,
-        } = this.props;
+import Card, { CardBody, CardFooter } from "../layout/Card/Card";
+import Avatar, { Sizes } from "../general/Avatar/Avatar";
 
-        return (
-            <div className="card bg-light">
-                <div className="card-body">
-                    <img src={avatar} className="rounded-circle mx-auto mt-2 d-block" alt="Avatar" />
-                    <h5 className="mt-3 text-center">{name}</h5>
-                    <p className="text-center text-muted">{location}</p>
-                </div>
+const ProfileCard = ({
+    profileImage,
+    name,
+    location,
+}) => (
+    <Card>
+        <CardBody>
+            <Avatar
+                image={profileImage}
+                size={Sizes.LG}
+                active
+            />
+
+            <h5 class="mt-3 mb-0">{name}</h5>
+            <a href="#" class="d-block text-sm text-muted mb-3">{location}</a>
+        </CardBody>
+        <CardFooter>
+            <div class="actions d-flex justify-content-between">
+                <a href="#" class="action-item">
+                    <span class="btn-inner--icon">Projects</span>
+                </a>
+                <a href="#" class="action-item">
+                    <span class="btn-inner--icon">See profile</span>
+                </a>
             </div>
-        )
-    }
-}
+        </CardFooter>
+    </Card>
+);
 
 ProfileCard.propTypes = {
-    avatar: PropTypes.string,
+    profileImage: PropTypes.string,
     name: PropTypes.string,
     location: PropTypes.string,
 }
