@@ -3,7 +3,7 @@ import React from "react";
 const Card = ({
     children,
 }) => (
-    <div class="card hover-shadow-lg hover-translate-y-n10">
+    <div className="card hover-shadow-lg hover-translate-y-n10">
         {children}
     </div>
 );
@@ -11,7 +11,7 @@ const Card = ({
 export const CardBody = ({
     children,
 }) => (
-    <div class="card-body text-center">
+    <div className="card-body">
         {children}
     </div>
 );
@@ -19,7 +19,7 @@ export const CardBody = ({
 export const CardFooter = ({
     children,
 }) => (
-    <div class="card-footer">
+    <div className="card-footer">
         {children}
     </div>
 );

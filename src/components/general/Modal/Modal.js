@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
@@ -11,13 +11,11 @@ const Modal = ({
 }) => ReactDOM.createPortal((
         <div style={{
             background: "rgba(0, 0, 0, 0.5)",
-            position: "absolute",
+            position: "fixed",
             top: 0,
             bottom: 0,
             left: 0,
             right: 0,
-            width: "100%",
-            height: "100%",
             zIndex: 1000,
         }}>
             <div className="modal" style={{ display: "block" }} tabIndex="-1" role="dialog">

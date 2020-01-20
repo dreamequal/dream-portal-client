@@ -19,7 +19,7 @@ export const ColumnSizes = {
 const Row = ({
     children,
 }) => (
-    <div className="row">
+    <div className="row mb-5">
         {children}
     </div>
 );

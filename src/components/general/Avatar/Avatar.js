@@ -19,7 +19,7 @@ const Avatar = ({
     return (
         <div class="avatar-parent-child">
             <a onClick={onClick} className={classNames}>
-                <img alt="Image placeholder" src={image}/>
+                <img alt="Avatar" src={image}/>
             </a>
             { active && <span class="avatar-child avatar-badge bg-info"></span> }
         </div>

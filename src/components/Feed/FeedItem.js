@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ItemTypes } from './Feed';
@@ -14,7 +14,7 @@ const FeedItem = ({
         <div class="card-header py-4 d-flex align-items-center">
             <div>
                 <img
-                    alt="Image placeholder"
+                    alt="Avatar"
                     src="https://placedog.net/500"
                     class="avatar rounded-circle hover-shadow-lg hover-scale-110"
                 />

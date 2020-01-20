@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import clasnames from "classnames";
+
 import { useAuth0 } from '../../../utils/react-auth0-spa';
 
 export const NavbarAlignments = {
@@ -11,6 +13,7 @@ export const NavbarAlignments = {
 const Navbar = ({
     logo,
     tree,
+    dark,
 }) => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
@@ -84,7 +87,7 @@ const Navbar = ({
                     {!isAuthenticated && (
                         <li className="nav-item">
                             <Link
-                                className="nav-link"
+                                className="btn btn-sm btn-white btn-icon rounded-pill"
                                 onClick={() => loginWithRedirect({})}
                             >
                                 Log in
@@ -107,8 +110,13 @@ const Navbar = ({
         );
     };
 
+    const classNames = clasnames("navbar", "navbar-expand-lg", {
+        "navbar-dark": dark,
+        "bg-primary": dark,
+    });
+
     return (
-        <nav className="navbar navbar-expand-lg">
+        <nav className={classNames}>
             <Link
                 className="navbar-brand"
                 to="/"
@@ -133,6 +141,14 @@ const Navbar = ({
             </div>
         </nav>
     );
+};
+
+Navbar.propTypes = {
+    tree: PropTypes.array,
+}
+
+Navbar.defaultProps = {
+    tree: [],
 };
 
 export default Navbar;

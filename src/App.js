@@ -12,6 +12,7 @@ import Navbar, { NavbarAlignments } from './components/Navigation/Navbar/Navbar'
 /**
  * Pages
  */
+import Landing from './pages/Landing/Landing';
 import Feed from './pages/Feed/Feed';
 import Resources from './pages/Resources/Resources';
 import Training from './pages/Training/Training';
@@ -19,7 +20,7 @@ import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 
 function App() {
-    const { loading } = useAuth0();
+    const { loading, isAuthenticated } = useAuth0();
 
     const tree = [
         {
@@ -50,24 +51,20 @@ function App() {
         <Router>
             <Navbar
                 logo="/logo.png"
-                tree={tree}
+                tree={isAuthenticated ? tree : []}
+                dark
             />
             <Switch>
                 <Route exact path="/">
-                    <Feed />
+                    { isAuthenticated
+                        ? <Feed />
+                        : <Landing />
+                    }
                 </Route>
-                <Route path="/training">
-                    <Training />
-                </Route>
-                <Route path="/resources">
-                    <Resources />
-                </Route>
-                <PrivateRoute path="/profile">
-                    <Profile />
-                </PrivateRoute>
-                <PrivateRoute path="/settings">
-                    <Settings />
-                </PrivateRoute>
+                <PrivateRoute path="/training" component={Training}/>
+                <PrivateRoute path="/resources" component={Resources}/>
+                <PrivateRoute path="/profile" component={Profile}/>
+                <PrivateRoute path="/settings" component={Settings}/>
             </Switch>
         </Router>
     );
