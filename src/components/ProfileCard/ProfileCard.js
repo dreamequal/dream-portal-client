@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card, { CardBody, CardFooter } from "../layout/Card/Card";
+import Card, { CardBody, CardFooter, Alignments } from "../layout/Card/Card";
 import Avatar, { Sizes } from "../general/Avatar/Avatar";
 
 const ProfileCard = ({
@@ -9,7 +9,7 @@ const ProfileCard = ({
     name,
     location,
 }) => (
-    <Card>
+    <Card align={Alignments.CENTER}>
         <CardBody>
             <Avatar
                 image={profileImage}

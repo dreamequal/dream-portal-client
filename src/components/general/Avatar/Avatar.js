@@ -19,7 +19,7 @@ const Avatar = ({
     return (
         <div class="avatar-parent-child">
             <a onClick={onClick} className={classNames}>
-                <img alt="Avatar" src={image}/>
+                <img alt="Avatar" className="h-100" src={image}/>
             </a>
             { active && <span class="avatar-child avatar-badge bg-info"></span> }
         </div>
@@ -28,7 +28,7 @@ const Avatar = ({
 
 Avatar.propTypes = {
     image: PropTypes.string.isRequired,
-    size: PropTypes.oneOf(Object.keys(Sizes)),
+    size: PropTypes.oneOf(Object.values(Sizes)),
     active: PropTypes.bool,
     onClick: PropTypes.func,
 };

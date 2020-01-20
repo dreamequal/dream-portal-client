@@ -1,12 +1,24 @@
 import React from "react";
+import classnames from "classnames";
+
+export const Alignments = {
+    CENTER: "center"
+}
 
 const Card = ({
     children,
-}) => (
-    <div className="card hover-shadow-lg hover-translate-y-n10">
-        {children}
-    </div>
-);
+    align,
+}) => {
+    const classNames = classnames("card", "hover-shadow-lg", "mb-0", {
+        "text-center": align === Alignments.CENTER,
+    });
+
+    return (
+        <div className={classNames}>
+            {children}
+        </div>
+    );
+};
 
 export const CardBody = ({
     children,

@@ -18,6 +18,7 @@ import Resources from './pages/Resources/Resources';
 import Training from './pages/Training/Training';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
+import Signup from './pages/Signup/Signup';
 
 function App() {
     const { loading, isAuthenticated } = useAuth0();
@@ -32,18 +33,14 @@ function App() {
             link: '/resources'
         },
         {
-            title: 'My Account',
-            align: NavbarAlignments.RIGHT,
-            tree: [
-                {
-                    title: 'Profile',
-                    link: '/profile'
-                },
-                {
-                    title: 'Settings',
-                    link: '/settings'
-                }
-            ]
+            title: 'Profile',
+            link: '/profile',
+            align: NavbarAlignments.RIGHT
+        },
+        {
+            title: 'Settings',
+            link: '/settings',
+            align: NavbarAlignments.RIGHT
         }
     ];
 
@@ -60,6 +57,9 @@ function App() {
                         ? <Feed />
                         : <Landing />
                     }
+                </Route>
+                <Route path="/signup">
+                    <Signup/>
                 </Route>
                 <PrivateRoute path="/training" component={Training}/>
                 <PrivateRoute path="/resources" component={Resources}/>

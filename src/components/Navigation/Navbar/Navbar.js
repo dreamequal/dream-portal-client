@@ -84,16 +84,24 @@ const Navbar = ({
                 </ul>
                 <ul className="navbar-nav">
                     {rightItems.map((page) => _renderMenuItem(page))}
-                    {!isAuthenticated && (
+                    {!isAuthenticated && [
                         <li className="nav-item">
                             <Link
-                                className="btn btn-sm btn-white btn-icon rounded-pill"
+                                className="nav-link"
                                 onClick={() => loginWithRedirect({})}
                             >
-                                Log in
+                                Log In
+                            </Link>
+                        </li>,
+                        <li className="nav-item">
+                            <Link
+                                className="btn btn-sm btn-white btn-icon mt-1 rounded-pill"
+                                path="/signup"
+                            >
+                                Sign Up
                             </Link>
                         </li>
-                    )}
+                    ]}
 
                     {isAuthenticated && (
                         <li className="nav-item">
@@ -101,7 +109,7 @@ const Navbar = ({
                                 className="nav-link"
                                 onClick={() => logout()}
                             >
-                                Log out
+                                Log Out
                             </Link>
                         </li>
                     )}
