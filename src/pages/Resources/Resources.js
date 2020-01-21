@@ -34,97 +34,99 @@ const UploadResourceForm = () => [
 const ResourcesPage = () => {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
-    return [
-        <Hero>
-            <span className="h1 mb-0 text-white d-block">
-                Resources
-            </span>
-            <p className="text-white mt-1">
-                Files, documents, and downloads for your Chapter.
-            </p>
-        </Hero>,
-        <Container>
-            {uploadModalOpen && (
-                <Modal
-                    title="Upload Resource"
-                    actionText="Upload Resource"
-                    onClose={() => setUploadModalOpen(false)}
-                    onAction={() => setUploadModalOpen(false)}
-                >
-                    {UploadResourceForm()}
-                </Modal>
-            )}
-
-            <Row>
-                <Column size={ColumnSizes.TWELVE}>
-                    <button
-                        className="btn btn-primary rounded-pill btn-icon"
-                        onClick={() => setUploadModalOpen(true)}
+    return (
+        <>
+            <Hero>
+                <span className="h1 mb-0 text-white d-block">
+                    Resources
+                </span>
+                <p className="text-white mt-1">
+                    Files, documents, and downloads for your Chapter.
+                </p>
+            </Hero>
+            <Container>
+                {uploadModalOpen && (
+                    <Modal
+                        title="Upload Resource"
+                        actionText="Upload Resource"
+                        onClose={() => setUploadModalOpen(false)}
+                        onAction={() => setUploadModalOpen(false)}
                     >
-                        <span className="btn-inner--icon">
-                            <Icon name="upload"/>
-                        </span>
-                        <span className="btn-inner--text">Upload Resource</span>
-                    </button>
-                </Column>
-            </Row>
+                        {UploadResourceForm()}
+                    </Modal>
+                )}
 
-            <Row>
-                <Column size={ColumnSizes.TWELVE}>
-                    <h3 className="text-muted">Branding Information</h3>
-                </Column>
-            </Row>
+                <Row>
+                    <Column size={ColumnSizes.TWELVE}>
+                        <button
+                            className="btn btn-primary rounded-pill btn-icon"
+                            onClick={() => setUploadModalOpen(true)}
+                        >
+                            <span className="btn-inner--icon">
+                                <Icon name="upload"/>
+                            </span>
+                            <span className="btn-inner--text">Upload Resource</span>
+                        </button>
+                    </Column>
+                </Row>
 
-            <Row>
-                <Column size={ColumnSizes.THREE}>
-                    <Card>
-                        <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                            <Icon name="file-image"/>
-                        </span>
-                        <CardBody>
-                            <h5>Logo Pack</h5>
-                            <p>This is some text that is a description for this resource.</p>
-                            <div className="text-center">
-                                <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
-                                    <span className="btn-inner--icon">
-                                        <Icon name="arrow-down"/>
-                                    </span>
-                                </button>
-                                <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
-                                    <span className="btn-inner--icon">
-                                        <Icon name="trash-alt"/>
-                                    </span>
-                                </button>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Column>
-                <Column size={ColumnSizes.THREE}>
-                    <Card>
-                        <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                            <Icon name="file"/>
-                        </span>
-                        <CardBody>
-                            <h5>Styleguide</h5>
-                            <p>Documentation on our colors and fonts.</p>
-                            <div className="text-center">
-                                <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
-                                    <span className="btn-inner--icon">
-                                        <Icon name="arrow-down"/>
-                                    </span>
-                                </button>
-                                <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
-                                    <span className="btn-inner--icon">
-                                        <Icon name="trash-alt"/>
-                                    </span>
-                                </button>
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Column>
-            </Row>
-        </Container>
-    ];
+                <Row>
+                    <Column size={ColumnSizes.TWELVE}>
+                        <h3 className="text-muted">Branding Information</h3>
+                    </Column>
+                </Row>
+
+                <Row>
+                    <Column size={ColumnSizes.THREE}>
+                        <Card>
+                            <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
+                                <Icon name="file-image"/>
+                            </span>
+                            <CardBody>
+                                <h5>Logo Pack</h5>
+                                <p>This is some text that is a description for this resource.</p>
+                                <div className="text-center">
+                                    <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
+                                        <span className="btn-inner--icon">
+                                            <Icon name="arrow-down"/>
+                                        </span>
+                                    </button>
+                                    <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
+                                        <span className="btn-inner--icon">
+                                            <Icon name="trash-alt"/>
+                                        </span>
+                                    </button>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                    <Column size={ColumnSizes.THREE}>
+                        <Card>
+                            <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
+                                <Icon name="file"/>
+                            </span>
+                            <CardBody>
+                                <h5>Styleguide</h5>
+                                <p>Documentation on our colors and fonts.</p>
+                                <div className="text-center">
+                                    <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
+                                        <span className="btn-inner--icon">
+                                            <Icon name="arrow-down"/>
+                                        </span>
+                                    </button>
+                                    <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
+                                        <span className="btn-inner--icon">
+                                            <Icon name="trash-alt"/>
+                                        </span>
+                                    </button>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                </Row>
+            </Container>
+        </>
+    );
 };
 
 export default ResourcesPage;
