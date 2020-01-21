@@ -10,7 +10,7 @@ import Avatar, { Sizes } from "../../components/general/Avatar/Avatar";
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
-const Profile = () => {
+const ProfilePage = () => {
     const { loading, user } = useAuth0();
 
     if (loading || !user) {
@@ -64,4 +64,4 @@ const Profile = () => {
     ];
 };
 
-export default Profile;
+export default ProfilePage;

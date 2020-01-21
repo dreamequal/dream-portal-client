@@ -1,65 +1,61 @@
-import React, { Component } from 'react';
+import React from "react";
 
 import Container from "../../components/layout/Container/Container";
 import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
-class Signup extends Component {
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Column size={ColumnSizes.SIX}>
-                        <div className="row align-items-center h-100 mr-5">
-                            <div>
-                                <h1 className="mb-4">
-                                    <i className="fas fa-user-plus"></i> Signup
-                                </h1>
-                                <p>
-                                    Creating an account gives you access to chapter resources,
-                                    the member directory, training, & more!
-                                </p>
-                            </div>
+const SignupPage = () => (
+    <Container>
+        <Row>
+            <Column size={ColumnSizes.SIX}>
+                <div className="row align-items-center h-100 mr-5">
+                    <div>
+                        <h1 className="mb-4">
+                            <i className="fas fa-user-plus"></i> Signup
+                        </h1>
+                        <p>
+                            Creating an account gives you access to chapter resources,
+                            the member directory, training, & more!
+                        </p>
+                    </div>
+                </div>
+            </Column>
+            <Column size={ColumnSizes.SIX}>
+                <Card>
+                    <CardBody>
+                        <div className="form-group">
+                            <label className="form-control-label">First Name</label>
+                            <input type="text" className="form-control"/>
                         </div>
-                    </Column>
-                    <Column size={ColumnSizes.SIX}>
-                        <Card>
-                            <CardBody>
-                                <div className="form-group">
-                                    <label className="form-control-label">First Name</label>
-                                    <input type="text" className="form-control"/>
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Last Name</label>
-                                    <input type="text" className="form-control"/>
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Username</label>
-                                    <input type="text" className="form-control"/>
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Email</label>
-                                    <input type="text" className="form-control"/>
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Password</label>
-                                    <input type="password" className="form-control"/>
-                                </div>
-                                <div className="text-right">
-                                    <button type="button" className="btn btn-info btn-icon">
-                                        <span className="btn-inner--text">Continue</span>
-                                        <span className="btn-inner--icon">
-                                            <i className="fas fa-arrow-right"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                            </CardBody>
-                        </Card>
-                    </Column>
-                </Row>
-            </Container>
-        )
-    }
-}
+                        <div className="form-group">
+                            <label className="form-control-label">Last Name</label>
+                            <input type="text" className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label className="form-control-label">Username</label>
+                            <input type="text" className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label className="form-control-label">Email</label>
+                            <input type="text" className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label className="form-control-label">Password</label>
+                            <input type="password" className="form-control"/>
+                        </div>
+                        <div className="text-right">
+                            <button type="button" className="btn btn-info btn-icon">
+                                <span className="btn-inner--text">Continue</span>
+                                <span className="btn-inner--icon">
+                                    <i className="fas fa-arrow-right"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </CardBody>
+                </Card>
+            </Column>
+        </Row>
+    </Container>
+);
 
-export default Signup;
+export default SignupPage;

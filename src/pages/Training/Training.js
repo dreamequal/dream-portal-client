@@ -2,7 +2,7 @@ import React from 'react';
 
 import Hero from "../../components/layout/Hero/Hero";
 
-const Training = () => {
+const TrainingPage = () => {
     return (
         <Hero>
             <span className="h1 mb-0 text-white d-block">
@@ -15,4 +15,4 @@ const Training = () => {
     )
 };
 
-export default Training;
+export default TrainingPage;

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
-class Login extends Component {
+class LoginPage extends Component {
     render() {
         return (
             <Container>
@@ -26,4 +26,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default LoginPage;

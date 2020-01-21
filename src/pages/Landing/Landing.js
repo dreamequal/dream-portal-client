@@ -4,7 +4,7 @@ import Hero from "../../components/layout/Hero/Hero";
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
-const Landing = () => {
+const LandingPage = () => {
     return (
         <>
             <Hero>
@@ -28,4 +28,4 @@ const Landing = () => {
     );
 };
 
-export default Landing;
+export default LandingPage;

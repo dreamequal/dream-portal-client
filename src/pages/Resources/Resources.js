@@ -31,7 +31,7 @@ const UploadResourceForm = () => [
     </div>
 ];
 
-const Resources = () => {
+const ResourcesPage = () => {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
     return [
@@ -127,4 +127,4 @@ const Resources = () => {
     ];
 };
 
-export default Resources;
+export default ResourcesPage;

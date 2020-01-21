@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Icon from "../../general/Icon/Icon";
 import Avatar from "../../general/Avatar/Avatar";
-import Card from "../../layout/Card/Card";
+import Card, { CardBody } from "../../layout/Card/Card";
 
 import { ItemTypes } from '../Feed';
 
@@ -34,11 +34,11 @@ const FeedItem = ({
                 </div>
             </div>
         </div>
-        <div className="card-body">
+        <CardBody>
             <p className="card-text">
                 {body}
             </p>
-        </div>
+        </CardBody>
     </Card>
 );
 
