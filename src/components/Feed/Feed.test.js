@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Feed from './Feed';
-import FeedItem from './FeedItem';
+import FeedItem from './FeedItem/FeedItem';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

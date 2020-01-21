@@ -36,7 +36,8 @@ const Home = () => {
                                 title: 'Hello world!',
                                 author: 'Noah',
                                 date: '10/8/2019',
-                                body: 'This is the beginning of the feed!'
+                                body: 'This is the beginning of the feed!',
+                                type: ItemTypes.ANNOUNCEMENT
                             }
                         ]}
                     />

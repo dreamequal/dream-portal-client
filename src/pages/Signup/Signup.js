@@ -10,10 +10,10 @@ class Signup extends Component {
             <Container>
                 <Row>
                     <Column size={ColumnSizes.SIX}>
-                        <div class="row align-items-center h-100 mr-5">
+                        <div className="row align-items-center h-100 mr-5">
                             <div>
                                 <h1 className="mb-4">
-                                    <i class="fas fa-user-plus"></i> Signup
+                                    <i className="fas fa-user-plus"></i> Signup
                                 </h1>
                                 <p>
                                     Creating an account gives you access to chapter resources,
@@ -45,11 +45,11 @@ class Signup extends Component {
                                     <label className="form-control-label">Password</label>
                                     <input type="password" className="form-control"/>
                                 </div>
-                                <div class="text-right">
-                                    <button type="button" class="btn btn-info btn-icon">
-                                        <span class="btn-inner--text">Continue</span>
-                                        <span class="btn-inner--icon">
-                                            <i class="fas fa-arrow-right"></i>
+                                <div className="text-right">
+                                    <button type="button" className="btn btn-info btn-icon">
+                                        <span className="btn-inner--text">Continue</span>
+                                        <span className="btn-inner--icon">
+                                            <i className="fas fa-arrow-right"></i>
                                         </span>
                                     </button>
                                 </div>

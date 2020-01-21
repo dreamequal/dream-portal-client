@@ -1,16 +1,23 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 export const Alignments = {
     CENTER: "center"
 }
 
+export const Types = {
+    INFO: "info",
+}
+
 const Card = ({
     children,
     align,
+    type,
 }) => {
-    const classNames = classnames("card", "hover-shadow-lg", "mb-0", {
+    const classNames = classnames("card", {
         "text-center": align === Alignments.CENTER,
+        "bg-info": type === Types.INFO,
     });
 
     return (
@@ -18,6 +25,11 @@ const Card = ({
             {children}
         </div>
     );
+};
+
+Card.propTypes = {
+    align: PropTypes.oneOf(Object.values(Alignments)),
+    type: PropTypes.oneOf(Object.values(Types)),
 };
 
 export const CardBody = ({

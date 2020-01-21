@@ -1,7 +1,11 @@
 import React from "react";
+
 import { useAuth0 } from "../../utils/react-auth0-spa";
 
 import Hero from "../../components/layout/Hero/Hero";
+import Badge from "../../components/general/Badge/Badge";
+import Card, { CardBody, Types } from "../../components/layout/Card/Card";
+import Icon from "../../components/general/Icon/Icon";
 import Avatar, { Sizes } from "../../components/general/Avatar/Avatar";
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
@@ -15,34 +19,31 @@ const Profile = () => {
 
     return [
         <Hero>
-            <div className="mb-3">
-                <span className="mr-3 align-middle">
-                    <Avatar
-                        image="https://placedog.net/500"
-                        size={Sizes.LG}
-                    />
-                </span>
-                <div className="d-inline-block">
-                    <span className="h1 mb-0 text-white d-block">
+            <div className="d-flex align-items-center mb-3">
+                <Avatar
+                    image="https://placedog.net/500"
+                    size={Sizes.LG}
+                />
+                <div className="ml-4">
+                    <h2 className="text-white">
                         Noah Buscher
-                    </span>
+                    </h2>
+                    <div>
+                        <Badge text="he/him"/>
+                        <Badge text="gay"/>
+                    </div>
                 </div>
             </div>
-
-            <span className="mb-0 d-block">
-                <span className="badge badge-info badge-pill mr-2">he/him</span>
-                <span className="badge badge-info badge-pill">gay</span>
-            </span>
         </Hero>,
         <Container>
             <Row>
                 <Column size={ColumnSizes.THREE}>
-                    <div className="card card-stats bg-info">
-                        <div className="card-body">
+                    <Card type={Types.INFO}>
+                        <CardBody>
                             <div className="d-flex">
                                 <div>
                                     <div className="icon text-white icon-sm">
-                                        <i className="fas fa-map-marked-alt"></i>
+                                        <Icon name="map-marked-alt"/>
                                     </div>
                                 </div>
                                 <div className="pl-4">
@@ -50,8 +51,8 @@ const Profile = () => {
                                     <span className="text-white">Denver Chapter</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </CardBody>
+                    </Card>
                 </Column>
                 <Column size={ColumnSizes.NINE}>
                     <p className="text-center text-muted">

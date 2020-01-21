@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 export const Sizes = {
+    SM: "avatar-sm",
+    MD: "avatar-md",
     LG: "avatar-lg",
 };
 
@@ -13,15 +15,17 @@ const Avatar = ({
     onClick
 }) => {
     const classNames = classnames("avatar", "rounded-circle", {
+        "avatar-sm": size === Sizes.SM,
+        "avatar-md": size === Sizes.MD,
         "avatar-lg": size === Sizes.LG,
     });
 
     return (
-        <div class="avatar-parent-child">
-            <a onClick={onClick} className={classNames}>
+        <div className="avatar-parent-child">
+            <span onClick={onClick} className={classNames}>
                 <img alt="Avatar" className="h-100" src={image}/>
-            </a>
-            { active && <span class="avatar-child avatar-badge bg-info"></span> }
+            </span>
+            { active && <span className="avatar-child avatar-badge bg-info"></span> }
         </div>
     );
 };
@@ -31,10 +35,6 @@ Avatar.propTypes = {
     size: PropTypes.oneOf(Object.values(Sizes)),
     active: PropTypes.bool,
     onClick: PropTypes.func,
-};
-
-Avatar.defaultProps = {
-    size: Sizes.LG,
 };
 
 export default Avatar;

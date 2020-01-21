@@ -5,9 +5,9 @@ import {
     Route,
 } from 'react-router-dom';
 import { useAuth0 } from "./utils/react-auth0-spa";
-import PrivateRoute from "./components/Navigation/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./components/navigation/PrivateRoute/PrivateRoute";
 
-import Navbar, { NavbarAlignments } from './components/Navigation/Navbar/Navbar';
+import Navbar, { NavbarAlignments } from './components/navigation/Navbar/Navbar';
 
 /**
  * Pages
@@ -21,34 +21,45 @@ import Settings from './pages/Settings/Settings';
 import Signup from './pages/Signup/Signup';
 
 function App() {
-    const { loading, isAuthenticated } = useAuth0();
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     const tree = [
-        {
-            title: 'Training',
-            link: '/training'
-        },
-        {
+        ...(isAuthenticated ? [{
             title: 'Resources',
             link: '/resources'
-        },
-        {
+        }] : []),
+        ...(isAuthenticated ? [{
             title: 'Profile',
             link: '/profile',
             align: NavbarAlignments.RIGHT
-        },
-        {
+        }] : []),
+        ...(isAuthenticated ? [{
             title: 'Settings',
             link: '/settings',
             align: NavbarAlignments.RIGHT
-        }
+        }] : []),
+        ...(!isAuthenticated ? [{
+            title: 'Log In',
+            onClick: () => loginWithRedirect({}),
+            align: NavbarAlignments.RIGHT,
+        }] : []),
+        ...(!isAuthenticated ? [{
+            title: 'Sign Up',
+            link: '/signup',
+            align: NavbarAlignments.RIGHT,
+        }] : []),
+        ...(isAuthenticated ? [{
+            title: 'Log Out',
+            onClick: () => logout(),
+            align: NavbarAlignments.RIGHT,
+        }] : []),
     ];
 
     return (
         <Router>
             <Navbar
                 logo="/logo.png"
-                tree={isAuthenticated ? tree : []}
+                tree={tree}
                 dark
             />
             <Switch>
