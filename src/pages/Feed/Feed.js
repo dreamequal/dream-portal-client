@@ -1,46 +1,32 @@
-import React, { useState } from 'react';
-import { useAuth0 } from "../../utils/react-auth0-spa";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
-
-import ProfileCard from '../../components/ProfileCard/ProfileCard';
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import Composer from "../../components/Composer/Composer";
-import Feed, { ItemTypes } from '../../components/Feed/Feed';
+import Feed, { ItemTypes } from "../../components/Feed/Feed";
 
-import config from "../../config/config";
+import { fetchUser } from "../../stores/User/UserEffects";
+
 
 const FeedPage = () => {
-    const { loading, user } = useAuth0();
+    const isLoading = useSelector(state => state.user.isLoading);
+    const user = useSelector(state => state.user);
     const [composerValue, setComposerValue] = useState("");
+    const dispatch = useDispatch();
 
-    const { getTokenSilently } = useAuth0();
-
-    const postMessage = async () => {
-        try {
-            const token = await getTokenSilently();
-
-            const response = await fetch(`${config.apiGateway.URL}/private`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            const responseData = await response.json();
-
-            console.log(await responseData);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-
+    const submitPost = () => {
+        // getTokenSilently()
+        //     .then((t) => dispatch(fetchUser(t)));
+        console.log("BOOM");
+    }
 
     return (
         <Container>
             <Row>
                 <Column size={ColumnSizes.THREE}>
-                    { (!loading && user) && (
+                    { (!isLoading && user) && (
                         <ProfileCard
                             profileImage={user.picture}
                             name={user.nickname}
@@ -54,7 +40,7 @@ const FeedPage = () => {
                         submitText="Post"
                         value={composerValue}
                         onValueChange={(value) => setComposerValue(value)}
-                        onSubmitClick={postMessage}
+                        onSubmitClick={submitPost}
                     />
                     <Feed
                         items={[

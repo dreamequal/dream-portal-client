@@ -1,21 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import { useAuth0 } from "../../../utils/react-auth0-spa";
 
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
-  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
-
-  useEffect(() => {
-    if (loading || isAuthenticated) {
-      return;
-    }
-    const fn = async () => {
-      await loginWithRedirect({
-        appState: { targetUrl: path }
-      });
-    };
-    fn();
-  }, [loading, isAuthenticated, loginWithRedirect, path]);
+  const isLoading = useSelector(state => state.user.isLoading);
+  const isAuthenticated = true;
 
   const render = props =>
     isAuthenticated === true ? <Component {...props} /> : null;

@@ -1,6 +1,5 @@
-import React from "react";
-
-import { useAuth0 } from "../../utils/react-auth0-spa";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Hero from "../../components/layout/Hero/Hero";
 import Badge from "../../components/general/Badge/Badge";
@@ -11,9 +10,10 @@ import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
 const ProfilePage = () => {
-    const { loading, user } = useAuth0();
+    const isLoading = useSelector(state => state.user.isLoading);
+    const user = useSelector(state => state.user);
 
-    if (loading || !user) {
+    if (isLoading || !user) {
         return <div>Loading...</div>;
     }
 
