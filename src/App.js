@@ -1,10 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { Route, Switch } from "react-router";
+import history from "./utils/history";
 import PrivateRoute from "./components/navigation/PrivateRoute/PrivateRoute";
 
 import Navbar, { NavbarAlignments } from "./components/navigation/Navbar/Navbar";
@@ -21,7 +18,6 @@ import Settings from "./pages/Settings/Settings";
 import Signup from "./pages/Signup/Signup";
 
 function App() {
-    const isLoading = useSelector(state => state.user.isLoading);
     const isAuthenticated = true;
 
     const logout = () => {
@@ -61,7 +57,7 @@ function App() {
     ];
 
     return (
-        <Router>
+        <ConnectedRouter history={history}>
             <Navbar
                 logo="/logo.png"
                 tree={tree}
@@ -82,7 +78,7 @@ function App() {
                 <PrivateRoute path="/profile" component={Profile}/>
                 <PrivateRoute path="/settings" component={Settings}/>
             </Switch>
-        </Router>
+        </ConnectedRouter>
     );
 }
 

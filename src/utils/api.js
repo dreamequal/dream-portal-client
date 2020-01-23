@@ -1,8 +1,4 @@
 import config from "../config/config";
 
-export const SecureFetch = (endpoint, token) =>
-    fetch(`${config.apiGateway.URL}/${endpoint}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+export const AuthFetch = (endpoint, options={}) =>
+    fetch(`${config.apiGateway.URL}/auth/${endpoint}`, options);

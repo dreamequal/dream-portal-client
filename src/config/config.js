@@ -7,7 +7,7 @@ const dev = {
         CLIENT_ID: "",
     },
     apiGateway: {
-        URL: "http://localhost:9000/api"
+        URL: "http://localhost:8080/api"
     },
 };
 
@@ -20,7 +20,7 @@ const prod = {
         CLIENT_ID: "",
     },
     apiGateway: {
-        URL: "http://localhost:9000/api"
+        URL: "http://localhost:8080/api"
     },
 };
 

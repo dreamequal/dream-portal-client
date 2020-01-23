@@ -9,4 +9,4 @@ export default function rootStore(initialState, history) {
     const store = createStore(rootReducer(history), initialState, applyMiddleware(...middleware));
 
     return store;
-}
+  }

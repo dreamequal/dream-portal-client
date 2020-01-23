@@ -14,11 +14,8 @@ const FeedPage = () => {
     const isLoading = useSelector(state => state.user.isLoading);
     const user = useSelector(state => state.user);
     const [composerValue, setComposerValue] = useState("");
-    const dispatch = useDispatch();
 
     const submitPost = () => {
-        // getTokenSilently()
-        //     .then((t) => dispatch(fetchUser(t)));
         console.log("BOOM");
     }
 
