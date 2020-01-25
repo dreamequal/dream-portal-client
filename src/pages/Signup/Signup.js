@@ -7,16 +7,9 @@ import { registerUser } from "../../stores/User/UserEffects";
 import Container from "../../components/layout/Container/Container";
 import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
+import Alert, { Types as AlertTypes } from "../../components/general/Alert/Alert";
 
 import { setToken } from "../../utils/profile";
-
-const Alert = ({
-    text
-}) => (
-    <div className="alert alert-danger" role="alert">
-        <strong>Heads up!</strong> {text}
-    </div>
-);
 
 const SignupPage = () => {
     // Form values
@@ -71,7 +64,7 @@ const SignupPage = () => {
                 <Column size={ColumnSizes.SIX}>
                     <Card>
                         <CardBody>
-                            { formError && <Alert text={formError.toString()}/> }
+                            { formError && <Alert type={AlertTypes.ERROR} text={formError.toString()}/> }
                             <form onSubmit={onRegisterUser}>
                                 <div className="form-group">
                                     <label className="form-control-label">First Name</label>

@@ -7,27 +7,57 @@ import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import Composer from "../../components/Composer/Composer";
 import Feed, { ItemTypes } from "../../components/Feed/Feed";
+import Alert, { Types } from "../../components/general/Alert/Alert";
 
 import { fetchUser } from "../../stores/User/UserEffects";
+import { fetchPosts, createPost } from "../../stores/Post/PostEffects";
 
-import { getToken } from "../../utils/profile";
+import { getToken, getInitials } from "../../utils/profile";
 
 
 const FeedPage = () => {
-    const isLoading = useSelector(state => state.user.fetch.isLoading);
+    // Pagination
+    const perPage = 10;
+    const [page, setPage] = useState(0);
+    const [digestedPosts, setDigestedPosts] = useState([]);
+
+    // Loading states
+    const isUserLoading = useSelector(state => state.user.fetch.isLoading);
+    const isPostsLoading = useSelector(state => state.posts.fetch.isLoading);
+    const createPostSuccess = useSelector(state => state.posts.create.success);
+    const createPostError = useSelector(state => state.posts.create.error);
+
     const user = useSelector(state => state.user.profile);
+    const posts = useSelector(state => state.posts.posts);
+
     const [composerValue, setComposerValue] = useState("");
+
     const dispatch = useDispatch();
 
     useEffect(() => {
+        const digested = posts.map((post) => {
+            return {
+                author: `${post.postedBy.firstName} ${post.postedBy.lastName}`,
+                initials: getInitials(post.postedBy.firstName, post.postedBy.lastName),
+                date: post.createdAt,
+                body: post.content,
+                type: ItemTypes.ANNOUNCEMENT
+            };
+        });
+        setDigestedPosts(digested);
+    }, [posts]);
+
+    useEffect(() => {
         dispatch(fetchUser(getToken()));
+        dispatch(fetchPosts(getToken()));
     }, [dispatch]);
 
     const submitPost = () => {
-        console.log("BOOM");
+        dispatch(createPost(getToken(), composerValue));
+        setComposerValue("");
     }
 
-    if (isLoading) {
+    if (isUserLoading) {
         return <Loading/>;
     }
 
@@ -35,7 +65,7 @@ const FeedPage = () => {
         <Container>
             <Row>
                 <Column size={ColumnSizes.THREE}>
-                    { (!isLoading && user) && (
+                    { (!isUserLoading && user) && (
                         <ProfileCard
                             firstName={user.firstName}
                             lastName={user.lastName}
@@ -43,30 +73,19 @@ const FeedPage = () => {
                     )}
                 </Column>
                 <Column size={ColumnSizes.NINE}>
-                    <Composer
-                        placeholder="New announcement..."
-                        submitText="Post"
-                        value={composerValue}
-                        onValueChange={(value) => setComposerValue(value)}
-                        onSubmitClick={submitPost}
-                    />
+                    { createPostSuccess && <Alert type={Types.SUCCESS} text="Post created successfully"/>}
+                    { createPostError && <Alert type={Types.ERROR} text={createPostError} />}
+                    { user.permissions > 1 &&
+                        <Composer
+                            placeholder="New announcement..."
+                            submitText="Post"
+                            value={composerValue}
+                            onValueChange={(value) => setComposerValue(value)}
+                            onSubmitClick={submitPost}
+                        />
+                    }
                     <Feed
-                        items={[
-                            {
-                                title: 'New Courses!',
-                                author: 'Ina',
-                                date: '10/8/2019',
-                                body: 'Hey, Dream Equal! Blah blah blah',
-                                type: ItemTypes.ANNOUNCEMENT
-                            },
-                            {
-                                title: 'Hello world!',
-                                author: 'Noah',
-                                date: '10/8/2019',
-                                body: 'This is the beginning of the feed!',
-                                type: ItemTypes.ANNOUNCEMENT
-                            }
-                        ]}
+                        items={digestedPosts}
                     />
                 </Column>
             </Row>
