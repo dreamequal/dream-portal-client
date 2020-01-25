@@ -50,12 +50,13 @@ const reducerDefaults = {
 const initialState = {
     profile: {},
     token: null,
-    isAuthenticated: false,
+    isAuthenticated: !!localStorage.getItem("auth-token"),
     error: null,
     ...reducerDefaults,
 };
 
 const UserReducer = (state=initialState, action) => {
+    console.log(action.type);
     switch(action.type) {
         // Fetch
         case FETCH_USER_PENDING:

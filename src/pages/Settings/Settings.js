@@ -38,7 +38,9 @@ const SignupPage = () => {
         return <Loading/>;
     }
 
-    const onUpdateUser = () => {
+    const onUpdateUser = (e) => {
+        e.preventDefault();
+
         // Attempt to save the user profile
         dispatch(updateUser(localStorage.getItem("auth-token"), {
             firstName: firstNameValue,
@@ -62,33 +64,34 @@ const SignupPage = () => {
                         <CardBody>
                             <h3>Profile</h3>
                             { formError && <Alert text={formError.toString()} /> }
-                            <div className="form-group">
-                                <label className="form-control-label">First Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={firstNameValue}
-                                    onChange={(e) => setFirstNameValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-control-label">Last Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={lastNameValue}
-                                    onChange={(e) => setLastNameValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="text-right">
-                                <button
-                                    type="button"
-                                    className="btn btn-info btn-sm"
-                                    onClick={onUpdateUser}
-                                >
-                                    <span className="btn-inner--text">Save</span>
-                                </button>
-                            </div>
+                            <form onSubmit={onUpdateUser}>
+                                <div className="form-group">
+                                    <label className="form-control-label">First Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={firstNameValue}
+                                        onChange={(e) => setFirstNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Last Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={lastNameValue}
+                                        onChange={(e) => setLastNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="text-right">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-info btn-sm"
+                                    >
+                                        <span className="btn-inner--text">Save</span>
+                                    </button>
+                                </div>
+                            </form>
                         </CardBody>
                     </Card>
                 </Column>

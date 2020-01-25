@@ -38,7 +38,9 @@ const SignupPage = () => {
         }
     });
 
-    const onRegisterUser = () => {
+    const onRegisterUser = (e) => {
+        e.preventDefault();
+
         // Attempt to register the user
         dispatch(registerUser({
             email: emailValue,
@@ -68,54 +70,55 @@ const SignupPage = () => {
                     <Card>
                         <CardBody>
                             { formError && <Alert text={formError.toString()}/> }
-                            <div className="form-group">
-                                <label className="form-control-label">First Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={firstNameValue}
-                                    onChange={(e) => setFirstNameValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-control-label">Last Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={lastNameValue}
-                                    onChange={(e) => setLastNameValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-control-label">Email</label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    value={emailValue}
-                                    onChange={(e) => setEmailValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-control-label">Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    value={passwordValue}
-                                    onChange={(e) => setPasswordValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="text-right">
-                                <button
-                                    type="button"
-                                    className="btn btn-info btn-icon"
-                                    onClick={onRegisterUser}
-                                >
-                                    <span className="btn-inner--text">Register</span>
-                                    <span className="btn-inner--icon">
-                                        <i className="fas fa-arrow-right"></i>
-                                    </span>
-                                </button>
-                            </div>
+                            <form onSubmit={onRegisterUser}>
+                                <div className="form-group">
+                                    <label className="form-control-label">First Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={firstNameValue}
+                                        onChange={(e) => setFirstNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Last Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={lastNameValue}
+                                        onChange={(e) => setLastNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Email</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        value={emailValue}
+                                        onChange={(e) => setEmailValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        value={passwordValue}
+                                        onChange={(e) => setPasswordValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="text-right">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-info btn-icon"
+                                    >
+                                        <span className="btn-inner--text">Register</span>
+                                        <span className="btn-inner--icon">
+                                            <i className="fas fa-arrow-right"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
                         </CardBody>
                     </Card>
                 </Column>

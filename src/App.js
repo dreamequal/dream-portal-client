@@ -24,11 +24,16 @@ import Login from "./pages/Login/Login";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector(state => state.user.isAuthenticated) || localStorage.getItem("auth-token") ? true : false;
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            dispatch(push("/"));
+        }
+    }, [isAuthenticated]);
 
     const logout = () => {
         dispatch(logoutUser());
-        dispatch(push("/"));
     }
 
     const tree = [
@@ -58,7 +63,7 @@ const App = () => {
         }] : []),
         ...(isAuthenticated ? [{
             title: "Log Out",
-            onClick: () => logout(),
+            onClick: logout,
             align: NavbarAlignments.RIGHT,
         }] : []),
     ];
@@ -78,16 +83,12 @@ const App = () => {
                         : <Landing />
                     }
                 </Route>
-                <Route path="/signup">
-                    <Signup/>
-                </Route>
-                <Route path="/login">
-                    <Login/>
-                </Route>
                 <PrivateRoute path="/training" component={Training}/>
                 <PrivateRoute path="/resources" component={Resources}/>
                 <PrivateRoute path="/profile" component={Profile}/>
                 <PrivateRoute path="/settings" component={Settings}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/signup" component={Signup}/>
                 <Redirect from="*" to="/" />
             </Switch>
 

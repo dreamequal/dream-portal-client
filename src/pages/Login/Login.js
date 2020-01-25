@@ -30,13 +30,16 @@ const SignupPage = () => {
      * Watch for a proper signup for redirect
      */
     useEffect(() => {
+        console.log(isAuthenticated, userToken);
         if (isAuthenticated && userToken) {
             localStorage.setItem("auth-token", userToken);
             dispatch(push("/"));
         }
     });
 
-    const onLoginUser = () => {
+    const onLoginUser = (e) => {
+        e.preventDefault();
+
         // Attempt to log the user in
         dispatch(loginUser({
             email: emailValue,
@@ -63,36 +66,37 @@ const SignupPage = () => {
                     <Card>
                         <CardBody>
                             { formError && <Alert text={formError.toString()}/> }
-                            <div className="form-group">
-                                <label className="form-control-label">Email</label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    value={emailValue}
-                                    onChange={(e) => setEmailValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label className="form-control-label">Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    value={passwordValue}
-                                    onChange={(e) => setPasswordValue(e.target.value)}
-                                />
-                            </div>
-                            <div className="text-right">
-                                <button
-                                    type="button"
-                                    className="btn btn-info btn-icon"
-                                    onClick={onLoginUser}
-                                >
-                                    <span className="btn-inner--text">Login</span>
-                                    <span className="btn-inner--icon">
-                                        <i className="fas fa-arrow-right"></i>
-                                    </span>
-                                </button>
-                            </div>
+                            <form onSubmit={onLoginUser}>
+                                <div className="form-group">
+                                    <label className="form-control-label">Email</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        value={emailValue}
+                                        onChange={(e) => setEmailValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        value={passwordValue}
+                                        onChange={(e) => setPasswordValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="text-right">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-info btn-icon"
+                                    >
+                                        <span className="btn-inner--text">Login</span>
+                                        <span className="btn-inner--icon">
+                                            <i className="fas fa-arrow-right"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
                         </CardBody>
                     </Card>
                 </Column>
