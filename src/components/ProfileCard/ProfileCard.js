@@ -4,33 +4,30 @@ import PropTypes from 'prop-types';
 import Card, { CardBody, Alignments } from "../layout/Card/Card";
 import Avatar, { Sizes } from "../general/Avatar/Avatar";
 
+import { getInitials } from "../../utils/profile";
+
 const ProfileCard = ({
     profileImage,
-    name,
-    location,
-}) => {
-    const initials = name.split(" ");
-    return (
-        <Card align={Alignments.CENTER}>
-            <CardBody>
-                <Avatar
-                    image={profileImage}
-                    size={Sizes.LG}
-                    initials={`${initials[0][0]}${initials[1][0]}`}
-                    active
-                />
+    firstName,
+    lastName
+}) => (
+    <Card align={Alignments.CENTER}>
+        <CardBody>
+            <Avatar
+                image={profileImage}
+                size={Sizes.LG}
+                initials={getInitials(firstName, lastName)}
+                active
+            />
 
-                <h5 className="mt-3 mb-0">{name}</h5>
-                <span className="d-block text-sm text-muted mb-3">{location}</span>
-            </CardBody>
-        </Card>
-    );
-};
+            <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
+        </CardBody>
+    </Card>
+);
 
 ProfileCard.propTypes = {
     profileImage: PropTypes.string,
     name: PropTypes.string,
-    // location: PropTypes.string,
 }
 
 export default ProfileCard;

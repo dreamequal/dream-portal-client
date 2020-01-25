@@ -27,7 +27,7 @@ const Avatar = ({
                 {image ? (
                     <img alt="Avatar" className="h-100" src={image}/>
                 ) : (
-                    <span className="avatar bg-gradient-primary text-white rounded-circle avatar-lg">{initials}</span>
+                    <span className="avatar bg-gradient-info text-white rounded-circle avatar-lg">{initials}</span>
                 )}
             </span>
             { active && <span className="avatar-child avatar-badge bg-info"></span> }

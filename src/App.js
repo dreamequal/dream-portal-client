@@ -23,7 +23,7 @@ import Login from "./pages/Login/Login";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector(state => state.user.isAuthenticated) || localStorage.getItem("auth-token");
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated) || localStorage.getItem("auth-token") ? true : false;
 
     const logout = () => {
         dispatch(logoutUser());

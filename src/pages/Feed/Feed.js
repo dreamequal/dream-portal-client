@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import Loading from "../../components/general/Loading/Loading";
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
@@ -24,15 +25,18 @@ const FeedPage = () => {
         console.log("BOOM");
     }
 
+    if (isLoading) {
+        return <Loading/>;
+    }
+
     return (
         <Container>
             <Row>
                 <Column size={ColumnSizes.THREE}>
                     { (!isLoading && user) && (
                         <ProfileCard
-                            // profileImage={user.picture}
-                            name={`${user.firstName} ${user.lastName}`}
-                            // location={user.name}
+                            firstName={user.firstName}
+                            lastName={user.lastName}
                         />
                     )}
                 </Column>
