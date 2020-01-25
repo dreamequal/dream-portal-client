@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { push } from 'connected-react-router';
+import { useDispatch, useSelector } from "react-redux";
+import { push } from "connected-react-router";
 
 import { registerUser } from "../../stores/User/UserEffects";
 
@@ -52,7 +52,7 @@ const SignupPage = () => {
         <Container>
             <Row>
                 <Column size={ColumnSizes.SIX}>
-                    <div className="row align-items-center h-100 mr-5">
+                    <div className="d-flex align-items-center h-100 mr-5">
                         <div>
                             <h1 className="mb-4">
                                 <i className="fas fa-user-plus"></i> Signup

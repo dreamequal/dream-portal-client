@@ -8,6 +8,7 @@ export const Alignments = {
 
 export const Types = {
     INFO: "info",
+    WARNING: "warning",
 }
 
 const Card = ({
@@ -18,6 +19,7 @@ const Card = ({
     const classNames = classnames("card", {
         "text-center": align === Alignments.CENTER,
         "bg-info": type === Types.INFO,
+        "bg-warning": type === Types.WARNING,
     });
 
     return (

@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
-import { Route, Switch } from "react-router";
+import { ConnectedRouter, push } from "connected-react-router";
+import { Route, Switch , Redirect} from "react-router";
 import history from "./utils/history";
 import PrivateRoute from "./components/navigation/PrivateRoute/PrivateRoute";
 
 import Navbar, { NavbarAlignments } from "./components/navigation/Navbar/Navbar";
+import Footer from "./components/navigation/Footer/Footer";
 
 import { logoutUser } from "./stores/User/UserEffects";
 
@@ -27,6 +28,7 @@ const App = () => {
 
     const logout = () => {
         dispatch(logoutUser());
+        dispatch(push("/"));
     }
 
     const tree = [
@@ -68,6 +70,7 @@ const App = () => {
                 tree={tree}
                 dark
             />
+
             <Switch>
                 <Route exact path="/">
                     { isAuthenticated
@@ -85,7 +88,10 @@ const App = () => {
                 <PrivateRoute path="/resources" component={Resources}/>
                 <PrivateRoute path="/profile" component={Profile}/>
                 <PrivateRoute path="/settings" component={Settings}/>
+                <Redirect from="*" to="/" />
             </Switch>
+
+            <Footer/>
         </ConnectedRouter>
     );
 }
