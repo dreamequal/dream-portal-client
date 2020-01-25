@@ -25,6 +25,7 @@ const reducerDefaults = {
 
 const initialState = {
     posts: [],
+    pageCount: 0,
     ...reducerDefaults,
 };
 
@@ -39,7 +40,8 @@ const PostReducer = (state=initialState, action) => {
         case FETCH_POSTS_SUCCESS:
             return {
                 ...state,
-                posts: [...state.posts, ...action.payload],
+                posts: [...state.posts, ...action.payload.posts],
+                pageCount: action.payload.pageCount,
                 fetch: { isLoading: false, error: false },
             };
         case FETCH_POSTS_ERROR:

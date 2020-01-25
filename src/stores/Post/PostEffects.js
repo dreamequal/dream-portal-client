@@ -11,17 +11,21 @@ import {
     createPostError,
 } from "./PostActions";
 
-export const fetchPosts = (token) => {
+export const fetchPosts = (token, page, perPage) => {
     return dispatch => {
         dispatch(fetchPostsPending());
 
         ApiFetch("posts", {
             method: "GET",
             headers: {
-                Authorization: `JWT ${token}`
+                Authorization: `JWT ${token}`,
+            },
+            params: {
+                page,
+                perPage,
             },
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.error) {
                     throw(res.error);
@@ -45,9 +49,9 @@ export const createPost = (token, post) => {
                 Authorization: `JWT ${token}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ content: post }),
+            data: { content: post },
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.message) {
                     throw(res.message);

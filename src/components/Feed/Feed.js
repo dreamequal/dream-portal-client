@@ -9,6 +9,8 @@ export const ItemTypes = {
 
 const Feed = ({
     items,
+    onNext,
+    showNext
 }) => (
     <div>
         {items.map((item) => (
@@ -18,11 +20,17 @@ const Feed = ({
             />
         ))}
 
-        <div className="text-center">
-            <button type="button" className="btn btn-link text-muted">
-                Load More
-            </button>
-        </div>
+        { showNext &&
+            <div className="text-center">
+                <button
+                    type="button"
+                    className="btn btn-link text-muted"
+                    onClick={onNext}
+                >
+                    Load More
+                </button>
+            </div>
+        }
     </div>
 );
 

@@ -33,7 +33,7 @@ export const fetchUser = (token) => {
                 Authorization: `JWT ${token}`
             },
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.error) {
                     throw(res.error);
@@ -57,9 +57,9 @@ export const loginUser = (user) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user),
+            data: JSON.stringify(user),
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.message) {
                     throw(res.message);
@@ -83,9 +83,9 @@ export const registerUser = (user) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user),
+            data: user,
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.message) {
                     throw(res.message);
@@ -109,9 +109,9 @@ export const updateUser = (token, user) => {
                 Authorization: `JWT ${token}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user),
+            data: user,
         })
-            .then(res => res.json())
+            .then(res => res.data)
             .then(res => {
                 if (res.message) {
                     throw(res.message);

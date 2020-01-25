@@ -26,6 +26,7 @@ const FeedPage = () => {
     const isPostsLoading = useSelector(state => state.posts.fetch.isLoading);
     const createPostSuccess = useSelector(state => state.posts.create.success);
     const createPostError = useSelector(state => state.posts.create.error);
+    const pageCount = useSelector(state => state.posts.pageCount);
 
     const user = useSelector(state => state.user.profile);
     const posts = useSelector(state => state.posts.posts);
@@ -49,12 +50,21 @@ const FeedPage = () => {
 
     useEffect(() => {
         dispatch(fetchUser(getToken()));
-        dispatch(fetchPosts(getToken()));
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(fetchPosts(getToken(), page, perPage));
+    }, [dispatch, page, perPage]);
+
+    // Create new post
     const submitPost = () => {
         dispatch(createPost(getToken(), composerValue));
         setComposerValue("");
+    }
+
+    // Load more posts
+    const loadMorePosts = () => {
+        setPage(page + 1);
     }
 
     if (isUserLoading) {
@@ -86,6 +96,8 @@ const FeedPage = () => {
                     }
                     <Feed
                         items={digestedPosts}
+                        showNext={pageCount > page}
+                        onNext={() => loadMorePosts()}
                     />
                 </Column>
             </Row>
