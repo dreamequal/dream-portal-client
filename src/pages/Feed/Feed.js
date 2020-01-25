@@ -21,7 +21,7 @@ const FeedPage = () => {
 
     useEffect(() => {
         dispatch(fetchUser(getToken()));
-    }, []);
+    }, [dispatch]);
 
     const submitPost = () => {
         console.log("BOOM");

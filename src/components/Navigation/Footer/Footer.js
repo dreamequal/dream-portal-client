@@ -1,12 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Container from "../../layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../layout/Row/Row";
 
-const Footer = ({
-
-}) => (
+const Footer = () => (
     <div className="mt-5">
         <Container>
             <Row>

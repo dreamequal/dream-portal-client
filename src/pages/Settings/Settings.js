@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { push } from 'connected-react-router';
 
 import { fetchUser, updateUser } from "../../stores/User/UserEffects";
 
@@ -8,21 +7,15 @@ import Container from "../../components/layout/Container/Container";
 import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import Loading from "../../components/general/Loading/Loading";
+import Alert, { Types as AlertTypes } from "../../components/general/Alert/Alert";
 
 import { getToken } from "../../utils/profile";
-
-const Alert = ({
-    text
-}) => (
-    <div className="alert alert-danger" role="alert">
-        <strong>Heads up!</strong> {text}
-    </div>
-);
 
 const SignupPage = () => {
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.user.update.isLoading);
     const formError = useSelector(state => state.user.update.error);
+    const formSuccess = useSelector(state => state.user.update.success);
     const user = useSelector(state => state.user.profile);
 
     // Form values
@@ -30,7 +23,7 @@ const SignupPage = () => {
     const [ lastNameValue, setLastNameValue ] = useState("");
 
     // Pull user
-    useEffect(() => dispatch(fetchUser(getToken())), []);
+    useEffect(() => dispatch(fetchUser(getToken())), [dispatch]);
 
     // Watch for store changes
     useEffect(() => setFirstNameValue(user.firstName), [user.firstName]);
@@ -58,14 +51,20 @@ const SignupPage = () => {
                         Settings
                     </h1>
                     <p>
-                        Modify your Dream Portal settings and update your profile
+                        Modify your Dream Portal settings and update your profile.
                     </p>
                 </Column>
                 <Column size={ColumnSizes.EIGHT}>
                     <Card>
                         <CardBody>
                             <h3>Profile</h3>
-                            { formError && <Alert text={formError.toString()} /> }
+                            { formSuccess && <Alert type={AlertTypes.SUCCESS} text={"User profile updated"} /> }
+                            { formError &&
+                                <Alert
+                                    type={AlertTypes.ERROR}
+                                    text={formError.toString()}
+                                />
+                            }
                             <form onSubmit={onUpdateUser}>
                                 <div className="form-group">
                                     <label className="form-control-label">First Name</label>

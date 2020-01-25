@@ -30,7 +30,7 @@ const App = () => {
         if (!isAuthenticated) {
             dispatch(push("/"));
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, dispatch]);
 
     const logout = () => {
         dispatch(logoutUser());

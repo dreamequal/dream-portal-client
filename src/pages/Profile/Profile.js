@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Loading from "../../components/general/Loading/Loading";
 import Hero from "../../components/layout/Hero/Hero";
-import Badge from "../../components/general/Badge/Badge";
 import Card, { CardBody, Types } from "../../components/layout/Card/Card";
 import Icon from "../../components/general/Icon/Icon";
 import Avatar, { Sizes } from "../../components/general/Avatar/Avatar";
@@ -20,7 +19,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         dispatch(fetchUser(getToken()));
-    }, []);
+    }, [dispatch]);
 
     if (isLoading || !user) {
         return <Loading/>;

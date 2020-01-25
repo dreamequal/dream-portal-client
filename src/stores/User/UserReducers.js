@@ -41,6 +41,7 @@ const reducerDefaults = {
     update: {
         isLoading: false,
         error: false,
+        success: false,
     },
     logout: {
         isLoading: false,
@@ -116,18 +117,18 @@ const UserReducer = (state=initialState, action) => {
         case UPDATE_USER_PENDING:
             return {
                 ...state,
-                update: { isLoading: true },
+                update: { isLoading: true, success: false },
             };
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 profile: action.payload,
-                update: { isLoading: false, error: false },
+                update: { isLoading: false, error: false, success: true },
             };
         case UPDATE_USER_ERROR:
             return {
                 ...state,
-                update: { isLoading: false, error: action.error },
+                update: { isLoading: false, error: action.error, success: false },
             };
         // Logout
         case LOGOUT_USER_PENDING:
