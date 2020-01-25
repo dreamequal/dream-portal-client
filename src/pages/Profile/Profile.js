@@ -11,7 +11,7 @@ import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
 import { fetchUser } from "../../stores/User/UserEffects";
-import { getInitials } from "../../utils/profile";
+import { getInitials, getToken } from "../../utils/profile";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const ProfilePage = () => {
     const user = useSelector(state => state.user.profile);
 
     useEffect(() => {
-        dispatch(fetchUser(localStorage.getItem("auth-token")));
+        dispatch(fetchUser(getToken()));
     }, []);
 
     if (isLoading || !user) {

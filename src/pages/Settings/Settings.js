@@ -9,6 +9,8 @@ import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import Loading from "../../components/general/Loading/Loading";
 
+import { getToken } from "../../utils/profile";
+
 const Alert = ({
     text
 }) => (
@@ -28,7 +30,7 @@ const SignupPage = () => {
     const [ lastNameValue, setLastNameValue ] = useState("");
 
     // Pull user
-    useEffect(() => dispatch(fetchUser(localStorage.getItem("auth-token"))), []);
+    useEffect(() => dispatch(fetchUser(getToken())), []);
 
     // Watch for store changes
     useEffect(() => setFirstNameValue(user.firstName), [user.firstName]);
@@ -42,7 +44,7 @@ const SignupPage = () => {
         e.preventDefault();
 
         // Attempt to save the user profile
-        dispatch(updateUser(localStorage.getItem("auth-token"), {
+        dispatch(updateUser(getToken(), {
             firstName: firstNameValue,
             lastName: lastNameValue,
         }));

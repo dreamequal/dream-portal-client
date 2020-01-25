@@ -1,4 +1,5 @@
 import { AuthFetch } from "../../utils/api";
+import { deleteToken } from "../../utils/profile";
 
 import {
     // Fetch
@@ -129,7 +130,7 @@ export const logoutUser = () => {
     return dispatch => {
         dispatch(logoutUserPending());
 
-        localStorage.removeItem("auth-token");
+        deleteToken();
 
         dispatch(logoutUserSuccess());
     }

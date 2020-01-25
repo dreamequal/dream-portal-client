@@ -3,8 +3,7 @@ const dev = {
         BUCKET: "YOUR_DEV_S3_UPLOADS_BUCKET_NAME"
     },
     auth: {
-        DOMAIN: "",
-        CLIENT_ID: "",
+        tokenStorageKey: "auth-token",
     },
     apiGateway: {
         URL: "http://localhost:8080/api"
@@ -16,8 +15,7 @@ const prod = {
         BUCKET: "YOUR_DEV_S3_UPLOADS_BUCKET_NAME"
     },
     auth: {
-        DOMAIN: "",
-        CLIENT_ID: "",
+        tokenStorageKey: "auth-token",
     },
     apiGateway: {
         URL: "http://localhost:8080/api"

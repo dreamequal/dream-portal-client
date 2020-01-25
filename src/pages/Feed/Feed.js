@@ -10,6 +10,8 @@ import Feed, { ItemTypes } from "../../components/Feed/Feed";
 
 import { fetchUser } from "../../stores/User/UserEffects";
 
+import { getToken } from "../../utils/profile";
+
 
 const FeedPage = () => {
     const isLoading = useSelector(state => state.user.fetch.isLoading);
@@ -18,7 +20,7 @@ const FeedPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchUser(localStorage.getItem("auth-token")));
+        dispatch(fetchUser(getToken()));
     }, []);
 
     const submitPost = () => {

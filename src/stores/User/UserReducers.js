@@ -1,5 +1,6 @@
 import { LOCATION_CHANGE } from "connected-react-router";
 
+import { getToken } from "../../utils/profile";
 
 import {
     // Fetch
@@ -50,13 +51,12 @@ const reducerDefaults = {
 const initialState = {
     profile: {},
     token: null,
-    isAuthenticated: !!localStorage.getItem("auth-token"),
+    isAuthenticated: !!getToken(),
     error: null,
     ...reducerDefaults,
 };
 
 const UserReducer = (state=initialState, action) => {
-    console.log(action.type);
     switch(action.type) {
         // Fetch
         case FETCH_USER_PENDING:

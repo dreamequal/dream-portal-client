@@ -8,6 +8,8 @@ import Container from "../../components/layout/Container/Container";
 import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
+import { setToken } from "../../utils/profile";
+
 const Alert = ({
     text
 }) => (
@@ -32,7 +34,7 @@ const SignupPage = () => {
     useEffect(() => {
         console.log(isAuthenticated, userToken);
         if (isAuthenticated && userToken) {
-            localStorage.setItem("auth-token", userToken);
+            setToken(userToken);
             dispatch(push("/"));
         }
     });
