@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Container from "../../components/layout/Container/Container";
@@ -12,8 +12,13 @@ import { fetchUser } from "../../stores/User/UserEffects";
 
 const FeedPage = () => {
     const isLoading = useSelector(state => state.user.isLoading);
-    const user = useSelector(state => state.user);
+    const user = useSelector(state => state.user.profile);
     const [composerValue, setComposerValue] = useState("");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchUser(localStorage.getItem("auth-token")));
+    }, []);
 
     const submitPost = () => {
         console.log("BOOM");
@@ -25,9 +30,9 @@ const FeedPage = () => {
                 <Column size={ColumnSizes.THREE}>
                     { (!isLoading && user) && (
                         <ProfileCard
-                            profileImage={user.picture}
-                            name={user.nickname}
-                            location={user.name}
+                            // profileImage={user.picture}
+                            name={`${user.firstName} ${user.lastName}`}
+                            // location={user.name}
                         />
                     )}
                 </Column>

@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { Route, Switch } from "react-router";
 import history from "./utils/history";
 import PrivateRoute from "./components/navigation/PrivateRoute/PrivateRoute";
 
 import Navbar, { NavbarAlignments } from "./components/navigation/Navbar/Navbar";
+
+import { logoutUser } from "./stores/User/UserEffects";
 
 /**
  * Pages
@@ -16,12 +19,14 @@ import Training from "./pages/Training/Training";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
 import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
 
-function App() {
-    const isAuthenticated = true;
+const App = () => {
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated) || localStorage.getItem("auth-token");
 
     const logout = () => {
-        console.log("Logout");
+        dispatch(logoutUser());
     }
 
     const tree = [
@@ -72,6 +77,9 @@ function App() {
                 </Route>
                 <Route path="/signup">
                     <Signup/>
+                </Route>
+                <Route path="/login">
+                    <Login/>
                 </Route>
                 <PrivateRoute path="/training" component={Training}/>
                 <PrivateRoute path="/resources" component={Resources}/>

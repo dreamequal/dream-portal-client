@@ -1,29 +1,104 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { push } from 'connected-react-router';
+
+import { loginUser } from "../../stores/User/UserEffects";
 
 import Container from "../../components/layout/Container/Container";
+import Card, { CardBody } from "../../components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 
-class LoginPage extends Component {
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Column size={ColumnSizes.TWELVE}>
-                        <div style={{maxWidth: '300px', margin: 'auto'}}>
-                            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-                            <label for="inputEmail" className="sr-only">Email address</label>
-                            <input type="email" id="inputEmail" className="form-control mb-3" placeholder="Email address" required="" autofocus=""/>
+const Alert = ({
+    text
+}) => (
+    <div className="alert alert-danger" role="alert">
+        <strong>Heads up!</strong> {text}
+    </div>
+);
 
-                            <label for="inputPassword" className="sr-only">Password</label>
-                            <input type="password" id="inputPassword" className="form-control mb-3" placeholder="Password" required=""/>
+const SignupPage = () => {
+    // Form values
+    const [ emailValue, setEmailValue ] = useState("");
+    const [ passwordValue, setPasswordValue ] = useState("");
 
-                            <button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+    const formError = useSelector(state => state.user.error);
+    const userToken = useSelector(state => state.user.token);
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+    const dispatch = useDispatch();
+
+    /**
+     * Watch for a proper signup for redirect
+     */
+    useEffect(() => {
+        if (isAuthenticated && userToken) {
+            localStorage.setItem("auth-token", userToken);
+            dispatch(push("/"));
+        }
+    });
+
+    const onLoginUser = () => {
+        // Attempt to log the user in
+        dispatch(loginUser({
+            email: emailValue,
+            password: passwordValue,
+        }));
+    };
+
+    return (
+        <Container>
+            <Row>
+                <Column size={ColumnSizes.SIX}>
+                    <div className="row align-items-center h-100 mr-5">
+                        <div>
+                            <h1 className="mb-4">
+                                <i className="fas fa-user-plus"></i> Login
+                            </h1>
+                            <p>
+                                Log in to your Dream Portal account.
+                            </p>
                         </div>
-                    </Column>
-                </Row>
-            </Container>
-        )
-    }
-}
+                    </div>
+                </Column>
+                <Column size={ColumnSizes.SIX}>
+                    <Card>
+                        <CardBody>
+                            { formError && <Alert text={formError}/> }
+                            <div className="form-group">
+                                <label className="form-control-label">Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    value={emailValue}
+                                    onChange={(e) => setEmailValue(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-control-label">Password</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    value={passwordValue}
+                                    onChange={(e) => setPasswordValue(e.target.value)}
+                                />
+                            </div>
+                            <div className="text-right">
+                                <button
+                                    type="button"
+                                    className="btn btn-info btn-icon"
+                                    onClick={onLoginUser}
+                                >
+                                    <span className="btn-inner--text">Login</span>
+                                    <span className="btn-inner--icon">
+                                        <i className="fas fa-arrow-right"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </CardBody>
+                    </Card>
+                </Column>
+            </Row>
+        </Container>
+    )
+};
 
-export default LoginPage;
+export default SignupPage;

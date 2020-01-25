@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { push } from 'connected-react-router';
 
 import { registerUser } from "../../stores/User/UserEffects";
@@ -17,17 +17,23 @@ const Alert = ({
 );
 
 const SignupPage = () => {
+    // Form values
     const [ emailValue, setEmailValue ] = useState("");
     const [ passwordValue, setPasswordValue ] = useState("");
+    const [ firstNameValue, setFirstNameValue ] = useState("");
+    const [ lastNameValue, setLastNameValue ] = useState("");
+
     const formError = useSelector(state => state.user.error);
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+    const userToken = useSelector(state => state.user.token);
     const dispatch = useDispatch();
 
     /**
      * Watch for a proper signup for redirect
      */
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated && userToken) {
+            localStorage.setItem("auth-token", userToken);
             dispatch(push("/"));
         }
     });
@@ -37,6 +43,8 @@ const SignupPage = () => {
         dispatch(registerUser({
             email: emailValue,
             password: passwordValue,
+            firstName: firstNameValue,
+            lastName: lastNameValue
         }));
     };
 
@@ -60,6 +68,24 @@ const SignupPage = () => {
                     <Card>
                         <CardBody>
                             { formError && <Alert text={formError}/> }
+                            <div className="form-group">
+                                <label className="form-control-label">First Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={firstNameValue}
+                                    onChange={(e) => setFirstNameValue(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-control-label">Last Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={lastNameValue}
+                                    onChange={(e) => setLastNameValue(e.target.value)}
+                                />
+                            </div>
                             <div className="form-group">
                                 <label className="form-control-label">Email</label>
                                 <input

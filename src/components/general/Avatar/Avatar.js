@@ -10,6 +10,7 @@ export const Sizes = {
 
 const Avatar = ({
     image,
+    initials,
     size,
     active,
     onClick
@@ -23,7 +24,11 @@ const Avatar = ({
     return (
         <div className="avatar-parent-child">
             <span onClick={onClick} className={classNames}>
-                <img alt="Avatar" className="h-100" src={image}/>
+                {image ? (
+                    <img alt="Avatar" className="h-100" src={image}/>
+                ) : (
+                    <span className="avatar bg-gradient-primary text-white rounded-circle avatar-lg">{initials}</span>
+                )}
             </span>
             { active && <span className="avatar-child avatar-badge bg-info"></span> }
         </div>
@@ -31,7 +36,7 @@ const Avatar = ({
 };
 
 Avatar.propTypes = {
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     size: PropTypes.oneOf(Object.values(Sizes)),
     active: PropTypes.bool,
     onClick: PropTypes.func,
