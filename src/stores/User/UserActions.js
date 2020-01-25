@@ -53,7 +53,6 @@ export const loginUserPending = () => {
 export const loginUserSuccess = (payload) => {
     return {
         type: LOGIN_USER_SUCCESS,
-        isAuthenticated: true,
         payload,
     }
 }
@@ -77,7 +76,6 @@ export const registerUserPending = () => {
 export const registerUserSuccess = (payload) => {
     return {
         type: REGISTER_USER_SUCCESS,
-        isAuthenticated: true,
         payload,
     }
 }

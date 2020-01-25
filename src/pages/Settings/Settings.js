@@ -19,8 +19,8 @@ const Alert = ({
 
 const SignupPage = () => {
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.user.isLoading);
-    const formError = useSelector(state => state.user.error);
+    const isLoading = useSelector(state => state.user.update.isLoading);
+    const formError = useSelector(state => state.user.update.error);
     const user = useSelector(state => state.user.profile);
 
     // Form values

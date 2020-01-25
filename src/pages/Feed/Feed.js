@@ -12,7 +12,7 @@ import { fetchUser } from "../../stores/User/UserEffects";
 
 
 const FeedPage = () => {
-    const isLoading = useSelector(state => state.user.isLoading);
+    const isLoading = useSelector(state => state.user.fetch.isLoading);
     const user = useSelector(state => state.user.profile);
     const [composerValue, setComposerValue] = useState("");
     const dispatch = useDispatch();

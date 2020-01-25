@@ -68,7 +68,6 @@ export const loginUser = (user) => {
                 return res;
             })
             .catch(error => {
-                console.log(error);
                 dispatch(loginUserError(error));
             })
     }
@@ -94,7 +93,6 @@ export const registerUser = (user) => {
                 return res;
             })
             .catch(error => {
-                console.log(error);
                 dispatch(registerUserError(error));
             })
     }
@@ -121,7 +119,6 @@ export const updateUser = (token, user) => {
                 return res;
             })
             .catch(error => {
-                console.log(error);
                 dispatch(updateUserError(error));
             })
     }

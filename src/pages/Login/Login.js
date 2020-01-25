@@ -21,7 +21,7 @@ const SignupPage = () => {
     const [ emailValue, setEmailValue ] = useState("");
     const [ passwordValue, setPasswordValue ] = useState("");
 
-    const formError = useSelector(state => state.user.error);
+    const formError = useSelector(state => state.user.login.error);
     const userToken = useSelector(state => state.user.token);
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const SignupPage = () => {
                             <h1 className="mb-4">
                                 <i className="fas fa-user-plus"></i> Login
                             </h1>
-                            <p>
+                            <p className="lead">
                                 Log in to your Dream Portal account.
                             </p>
                         </div>

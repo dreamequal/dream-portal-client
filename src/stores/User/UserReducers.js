@@ -1,3 +1,6 @@
+import { LOCATION_CHANGE } from "connected-react-router";
+
+
 import {
     // Fetch
     FETCH_USER_PENDING,
@@ -21,12 +24,35 @@ import {
     LOGOUT_USER_ERROR,
 } from "./UserActions";
 
+const reducerDefaults = {
+    register: {
+        isLoading: false,
+        error: false,
+    },
+    fetch: {
+        isLoading: false,
+        error: false,
+    },
+    login: {
+        isLoading: false,
+        error: false,
+    },
+    update: {
+        isLoading: false,
+        error: false,
+    },
+    logout: {
+        isLoading: false,
+        error: false,
+    },
+};
+
 const initialState = {
     profile: {},
     token: null,
     isAuthenticated: false,
-    isLoading: false,
     error: null,
+    ...reducerDefaults,
 };
 
 const UserReducer = (state=initialState, action) => {
@@ -35,44 +61,42 @@ const UserReducer = (state=initialState, action) => {
         case FETCH_USER_PENDING:
             return {
                 ...state,
-                isLoading: true,
+                fetch: { isLoading: true },
             };
         case FETCH_USER_SUCCESS:
             return {
                 ...state,
                 profile: action.payload,
-                isLoading: false,
+                fetch: { isLoading: false, error: false },
             };
         case FETCH_USER_ERROR:
             return {
                 ...state,
-                error: action.error,
-                isLoading: false
+                fetch: { isLoading: false, error: action.error },
             };
         // Login
         case LOGIN_USER_PENDING:
             return {
                 ...state,
-                isLoading: true,
+                login: { isLoading: true },
             };
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
                 token: action.payload.token,
                 isAuthenticated: true,
-                isLoading: false,
+                login: { isLoading: false, error: false },
             };
         case LOGIN_USER_ERROR:
             return {
                 ...state,
-                error: action.error,
-                isLoading: false
+                login: { isLoading: false, error: action.error },
             };
         // Register
         case REGISTER_USER_PENDING:
             return {
                 ...state,
-                isLoading: true,
+                register: { isLoading: true },
             };
         case REGISTER_USER_SUCCESS:
             return {
@@ -80,37 +104,35 @@ const UserReducer = (state=initialState, action) => {
                 profile: action.payload.profile,
                 isAuthenticated: true,
                 token: action.payload.token,
-                isLoading: false,
+                register: { isLoading: false, error: false },
             };
         case REGISTER_USER_ERROR:
             return {
                 ...state,
-                error: action.error,
-                isLoading: false
+                register: { isLoading: false, error: action.error },
             };
         // Update
         case UPDATE_USER_PENDING:
             return {
                 ...state,
-                isLoading: true,
+                update: { isLoading: true },
             };
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 profile: action.payload,
-                isLoading: false,
+                update: { isLoading: false, error: false },
             };
         case UPDATE_USER_ERROR:
             return {
                 ...state,
-                error: action.error,
-                isLoading: false
+                update: { isLoading: false, error: action.error },
             };
         // Logout
         case LOGOUT_USER_PENDING:
             return {
                 ...state,
-                isLoading: true,
+                logout: { isLoading: true },
             };
         case LOGOUT_USER_SUCCESS:
             return {
@@ -118,14 +140,18 @@ const UserReducer = (state=initialState, action) => {
                 profile: {},
                 isAuthenticated: false,
                 token: null,
-                isLoading: false,
+                logout: { isLoading: false, error: false },
             };
         case LOGOUT_USER_ERROR:
             return {
                 ...state,
-                error: action.error,
-                isLoading: false
+                logout: { isLoading: false, error: action.error },
             };
+        case LOCATION_CHANGE:
+            return {
+                ...state,
+                ...reducerDefaults,
+            }
 		default:
             return state;
     }

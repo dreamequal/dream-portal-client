@@ -15,7 +15,7 @@ import { getInitials } from "../../utils/profile";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.user.isLoading);
+    const isLoading = useSelector(state => state.user.fetch.isLoading);
     const user = useSelector(state => state.user.profile);
 
     useEffect(() => {

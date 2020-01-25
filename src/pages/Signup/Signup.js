@@ -23,7 +23,7 @@ const SignupPage = () => {
     const [ firstNameValue, setFirstNameValue ] = useState("");
     const [ lastNameValue, setLastNameValue ] = useState("");
 
-    const formError = useSelector(state => state.user.error);
+    const formError = useSelector(state => state.user.register.error);
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const userToken = useSelector(state => state.user.token);
     const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const SignupPage = () => {
                             <h1 className="mb-4">
                                 <i className="fas fa-user-plus"></i> Signup
                             </h1>
-                            <p>
+                            <p className="lead">
                                 Creating an account gives you access to chapter resources,
                                 the member directory, training, & more!
                             </p>
