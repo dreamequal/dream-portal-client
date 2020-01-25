@@ -68,8 +68,7 @@ const PostReducer = (state=initialState, action) => {
             };
         case LOCATION_CHANGE:
             return {
-                ...state,
-                ...reducerDefaults,
+                ...initialState,
             }
 		default:
             return state;

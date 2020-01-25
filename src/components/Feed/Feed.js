@@ -10,29 +10,40 @@ export const ItemTypes = {
 const Feed = ({
     items,
     onNext,
-    showNext
-}) => (
-    <div>
-        {items.map((item) => (
-            <FeedItem
-                key={item.title}
-                {...item}
-            />
-        ))}
-
-        { showNext &&
+    showNext,
+    loading,
+}) => {
+    if (loading) {
+        return (
             <div className="text-center">
-                <button
-                    type="button"
-                    className="btn btn-link text-muted"
-                    onClick={onNext}
-                >
-                    Load More
-                </button>
+                <div className="spinner-grow" role="status"></div>
             </div>
-        }
-    </div>
-);
+        );
+    }
+
+    return (
+        <div>
+            {items.map((item) => (
+                <FeedItem
+                    key={item.id}
+                    {...item}
+                />
+            ))}
+
+            { showNext &&
+                <div className="text-center">
+                    <button
+                        type="button"
+                        className="btn btn-link text-muted"
+                        onClick={onNext}
+                    >
+                        Load More
+                    </button>
+                </div>
+            }
+        </div>
+    );
+};
 
 Feed.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({})),
@@ -40,6 +51,7 @@ Feed.propTypes = {
 
 Feed.defaultProps = {
     items: [],
+    loading: true,
 };
 
 export default Feed;

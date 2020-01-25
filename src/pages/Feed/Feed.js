@@ -38,6 +38,7 @@ const FeedPage = () => {
     useEffect(() => {
         const digested = posts.map((post) => {
             return {
+                id: post._id,
                 author: `${post.postedBy.firstName} ${post.postedBy.lastName}`,
                 initials: getInitials(post.postedBy.firstName, post.postedBy.lastName),
                 date: post.createdAt,
@@ -67,20 +68,15 @@ const FeedPage = () => {
         setPage(page + 1);
     }
 
-    if (isUserLoading) {
-        return <Loading/>;
-    }
-
     return (
         <Container>
             <Row>
                 <Column size={ColumnSizes.THREE}>
-                    { (!isUserLoading && user) && (
-                        <ProfileCard
-                            firstName={user.firstName}
-                            lastName={user.lastName}
-                        />
-                    )}
+                    <ProfileCard
+                        loading={isUserLoading}
+                        firstName={user.firstName}
+                        lastName={user.lastName}
+                    />
                 </Column>
                 <Column size={ColumnSizes.NINE}>
                     { createPostSuccess && <Alert type={Types.SUCCESS} text="Post created successfully"/>}
@@ -97,7 +93,8 @@ const FeedPage = () => {
                     <Feed
                         items={digestedPosts}
                         showNext={pageCount > page}
-                        onNext={() => loadMorePosts()}
+                        loading={isPostsLoading}
+                        onNext={loadMorePosts}
                     />
                 </Column>
             </Row>

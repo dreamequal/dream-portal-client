@@ -9,18 +9,27 @@ import { getInitials } from "../../utils/profile";
 const ProfileCard = ({
     profileImage,
     firstName,
-    lastName
+    lastName,
+    loading,
 }) => (
     <Card align={Alignments.CENTER}>
         <CardBody>
-            <Avatar
-                image={profileImage}
-                size={Sizes.LG}
-                initials={getInitials(firstName, lastName)}
-                active
-            />
+            {loading ? (
+                <div className="text-center">
+                    <div className="spinner-grow" role="status"></div>
+                </div>
+            ) : (
+                <>
+                    <Avatar
+                        image={profileImage}
+                        size={Sizes.LG}
+                        initials={getInitials(firstName, lastName)}
+                        active
+                    />
 
-            <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
+                    <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
+                </>
+            )}
         </CardBody>
     </Card>
 );
