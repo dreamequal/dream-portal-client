@@ -67,7 +67,7 @@ const SignupPage = () => {
                 <Column size={ColumnSizes.SIX}>
                     <Card>
                         <CardBody>
-                            { formError && <Alert text={formError}/> }
+                            { formError && <Alert text={formError.toString()}/> }
                             <div className="form-group">
                                 <label className="form-control-label">First Name</label>
                                 <input

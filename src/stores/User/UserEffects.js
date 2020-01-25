@@ -13,6 +13,10 @@ import {
     registerUserPending,
     registerUserSuccess,
     registerUserError,
+    // Update
+    updateUserPending,
+    updateUserSuccess,
+    updateUserError,
     // Logout
     logoutUserPending,
     logoutUserSuccess,
@@ -92,6 +96,33 @@ export const registerUser = (user) => {
             .catch(error => {
                 console.log(error);
                 dispatch(registerUserError(error));
+            })
+    }
+};
+
+export const updateUser = (token, user) => {
+    return dispatch => {
+        dispatch(updateUserPending());
+
+        AuthFetch("me", {
+            method: "PUT",
+            headers: {
+                Authorization: `JWT ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user),
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.message) {
+                    throw(res.message);
+                }
+                dispatch(updateUserSuccess(res));
+                return res;
+            })
+            .catch(error => {
+                console.log(error);
+                dispatch(updateUserError(error));
             })
     }
 };

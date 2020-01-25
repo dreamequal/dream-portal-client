@@ -24,7 +24,7 @@ const LandingPage = () => {
                         <Link to="/signup" className="btn btn-secondary rounded-pill mr-0">
                             Create Account
                         </Link>
-                        <Link to="/signup" className="btn btn-link text-white">Login</Link>
+                        <Link to="/login" className="btn btn-link text-white">Login</Link>
                     </div>
                 </div>
             </Hero>,

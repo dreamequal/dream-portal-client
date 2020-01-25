@@ -10,6 +10,10 @@ export const REGISTER_USER_PENDING = "REGISTER_USER_PENDING";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_ERROR = "REGISTER_USER_ERROR";
 
+export const UPDATE_USER_PENDING = "UPDATE_USER_PENDING";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_ERROR = "UPDATE_USER_ERROR";
+
 export const LOGOUT_USER_PENDING = "LOGOUT_USER_PENDING";
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";
 export const LOGOUT_USER_ERROR = "LOGOUT_USER_ERROR";
@@ -81,6 +85,29 @@ export const registerUserSuccess = (payload) => {
 export const registerUserError = (error) => {
     return {
         type: REGISTER_USER_ERROR,
+        error,
+    }
+}
+
+/**
+ * Update user actions
+ */
+export const updateUserPending = () => {
+    return {
+        type: UPDATE_USER_PENDING
+    }
+}
+
+export const updateUserSuccess = (payload) => {
+    return {
+        type: UPDATE_USER_SUCCESS,
+        payload,
+    }
+}
+
+export const updateUserError = (error) => {
+    return {
+        type: UPDATE_USER_ERROR,
         error,
     }
 }

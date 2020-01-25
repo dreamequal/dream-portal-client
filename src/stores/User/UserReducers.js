@@ -11,6 +11,10 @@ import {
     REGISTER_USER_PENDING,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_ERROR,
+    // Update
+    UPDATE_USER_PENDING,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_ERROR,
     // Logout
     LOGOUT_USER_PENDING,
     LOGOUT_USER_SUCCESS,
@@ -79,6 +83,24 @@ const UserReducer = (state=initialState, action) => {
                 isLoading: false,
             };
         case REGISTER_USER_ERROR:
+            return {
+                ...state,
+                error: action.error,
+                isLoading: false
+            };
+        // Update
+        case UPDATE_USER_PENDING:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                profile: action.payload,
+                isLoading: false,
+            };
+        case UPDATE_USER_ERROR:
             return {
                 ...state,
                 error: action.error,
