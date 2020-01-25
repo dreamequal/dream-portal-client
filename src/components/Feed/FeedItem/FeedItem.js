@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
+import 'moment-timezone';
 
 import Icon from "../../general/Icon/Icon";
 import Avatar, { Sizes } from "../../general/Avatar/Avatar";
@@ -11,7 +13,7 @@ const FeedItem = ({
     title,
     author,
     initials,
-    date,
+    createdAt,
     body,
     type,
 }) => (
@@ -31,7 +33,9 @@ const FeedItem = ({
                     <h6 className="mb-0">{author}</h6>
                     <small className="d-block text-muted">
                         <Icon name="clock"/>
-                        <span className="ml-2">3 hours ago</span>
+                        <span className="ml-2">
+                            {Moment(createdAt).fromNow()}
+                        </span>
                     </small>
                 </div>
             </div>

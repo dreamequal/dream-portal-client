@@ -41,7 +41,7 @@ const FeedPage = () => {
                 id: post._id,
                 author: `${post.postedBy.firstName} ${post.postedBy.lastName}`,
                 initials: getInitials(post.postedBy.firstName, post.postedBy.lastName),
-                date: post.createdAt,
+                createdAt: post.createdAt,
                 body: post.content,
                 type: ItemTypes.ANNOUNCEMENT
             };
