@@ -61,11 +61,16 @@ const UploadResourceModal = ({
         dispatch(createResource(getToken(), formFields, fileValue));
     };
 
+    const handleOnClose = () => {
+        dispatch(resetCreateResource());
+        onClose();
+    }
+
     return (
         <Modal
             title="Upload Resource"
             actionText="Upload Resource"
-            onClose={onClose}
+            onClose={handleOnClose}
             onAction={handleSubmit}
         >
             { formErrors &&
