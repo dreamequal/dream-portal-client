@@ -76,6 +76,7 @@ const LandingPage = () => {
                             <ProfileCard
                                 firstName="Jane"
                                 lastName="Doe"
+                                username="janedoe"
                             />
                         </Column>
                         <Column size={ColumnSizes.EIGHT}>

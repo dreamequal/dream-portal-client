@@ -65,7 +65,8 @@ const Modal = ({
 
 Modal.propTypes = {
     actionText: PropTypes.string,
-    onAction: PropTypes.func,
+    actionDisabled: PropTypes.bool,
+    onAction: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
 };

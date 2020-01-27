@@ -80,8 +80,10 @@ Composer.propTypes = {
     submitText: PropTypes.string.isRequired,
     rows: PropTypes.number,
     value: PropTypes.string,
-    onValueChange: PropTypes.func,
-    onSubmitClick: PropTypes.func,
+    confirmSubmit: PropTypes.func,
+    confirmSubmitMessage: PropTypes.node,
+    onValueChange: PropTypes.func.isRequired,
+    onSubmitClick: PropTypes.func.isRequired,
 };
 
 Composer.defaultProps = {

@@ -61,4 +61,9 @@ export const Column = ({
     );
 };
 
+Column.propTypes = {
+    size: PropTypes.oneOf(Object.values(ColumnSizes)),
+    className: PropTypes.string,
+}
+
 export default Row;

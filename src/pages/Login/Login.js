@@ -21,9 +21,7 @@ const SignupPage = () => {
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const dispatch = useDispatch();
 
-    /**
-     * Watch for a proper signup for redirect
-     */
+    // Watch for a proper signup for redirect
     useEffect(() => {
         if (isAuthenticated && userToken) {
             setToken(userToken);

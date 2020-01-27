@@ -105,6 +105,8 @@ const Navbar = ({
 
 Navbar.propTypes = {
     tree: PropTypes.array,
+    logo: PropTypes.string.isRequired,
+    dark: PropTypes.bool,
 }
 
 Navbar.defaultProps = {

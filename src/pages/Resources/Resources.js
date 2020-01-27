@@ -267,6 +267,16 @@ const ResourcesPage = () => {
                         </div>
                     ))
                 }
+
+                { resources.length === 0 &&
+                    <Row>
+                        <Column size={ColumnSizes.TWELVE}>
+                            <p className="text-muted text-center">
+                                No resources yet!
+                            </p>
+                        </Column>
+                    </Row>
+                }
             </Container>
         </>
     );

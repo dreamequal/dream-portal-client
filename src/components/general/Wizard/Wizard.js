@@ -43,6 +43,7 @@ Wizard.propTypes = {
     stepText: PropTypes.string,
     completeText: PropTypes.string,
     step: PropTypes.number,
+    onStep: PropTypes.func,
     onComplete: PropTypes.func,
     onClose: PropTypes.func,
 };
@@ -55,8 +56,6 @@ Wizard.defaultProps = {
 
 export const Step = ({
     children,
-    canStep,
-    stepTo,
 }) => (
     <div>
         {children}

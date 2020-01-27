@@ -33,6 +33,7 @@ const Card = ({
 Card.propTypes = {
     align: PropTypes.oneOf(Object.values(Alignments)),
     type: PropTypes.oneOf(Object.values(Types)),
+    className: PropTypes.string,
 };
 
 export const CardBody = ({

@@ -21,7 +21,7 @@ const Avatar = ({
         "avatar-lg": size === Sizes.LG,
     });
 
-    const initialClassNames = classnames("avatar", "rounded-circle", "bg-gradient-info", "text-white", {
+    const initialClassNames = classnames("avatar", "rounded-circle", "bg-info", "text-white", {
         "avatar-sm": size === Sizes.SM,
         "avatar-md": size === Sizes.MD,
         "avatar-lg": size === Sizes.LG,
@@ -43,6 +43,7 @@ const Avatar = ({
 
 Avatar.propTypes = {
     image: PropTypes.string,
+    initials: PropTypes.string,
     size: PropTypes.oneOf(Object.values(Sizes)),
     active: PropTypes.bool,
     onClick: PropTypes.func,

@@ -50,10 +50,12 @@ const FeedPage = () => {
         setDigestedPosts(digested);
     }, [posts]);
 
+    // Get user
     useEffect(() => {
         dispatch(fetchUser(getToken()));
     }, [dispatch]);
 
+    // Get posts on load/page change
     useEffect(() => {
         dispatch(fetchPosts(getToken(), page, perPage));
     }, [dispatch, page, perPage]);

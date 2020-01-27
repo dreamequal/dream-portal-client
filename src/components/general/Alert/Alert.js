@@ -26,7 +26,7 @@ const Alert = ({
 };
 
 Alert.propTypes = {
-    text: PropTypes.node,
+    text: PropTypes.node.isRequired,
     type: PropTypes.oneOf(Object.values(Types)),
 };
 

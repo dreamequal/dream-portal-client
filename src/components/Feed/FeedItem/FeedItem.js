@@ -10,7 +10,6 @@ import Card, { CardBody } from "../../layout/Card/Card";
 import { ItemTypes } from '../Feed';
 
 const FeedItem = ({
-    title,
     author,
     initials,
     createdAt,
@@ -49,7 +48,6 @@ const FeedItem = ({
 );
 
 FeedItem.propTypes = {
-    title: PropTypes.string,
     author: PropTypes.string,
     date: PropTypes.string,
     body: PropTypes.node,

@@ -13,17 +13,14 @@ import { fetchUser } from "../../stores/User/UserEffects";
 import { getInitials, getToken } from "../../utils/profile";
 
 const ProfilePage = () => {
-    const dispatch = useDispatch();
-    const isLoading = useSelector(state => state.user.fetch.isLoading);
     const user = useSelector(state => state.user.profile);
 
+    const dispatch = useDispatch();
+
+    // Get user on load
     useEffect(() => {
         dispatch(fetchUser(getToken()));
     }, [dispatch]);
-
-    if (isLoading || !user) {
-        return <Loading/>;
-    }
 
     return (
         <>
@@ -34,9 +31,12 @@ const ProfilePage = () => {
                         size={Sizes.LG}
                     />
                     <div className="ml-4">
-                        <h2 className="text-white">
+                        <h2 className="text-white mb-0">
                             {user.firstName} {user.lastName}
                         </h2>
+                        <small className="text-white">
+                            @{user.username}
+                        </small>
                     </div>
                 </div>
             </Hero>

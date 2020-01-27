@@ -29,7 +29,9 @@ const ProfileCard = ({
                     />
 
                     <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
-                    <span className="d-block text-sm text-muted mb-3">@{username}</span>
+                    { username &&
+                        <span className="d-block text-sm text-muted mb-3">@{username}</span>
+                    }
                     {footer}
                 </>
             )}
@@ -39,7 +41,11 @@ const ProfileCard = ({
 
 ProfileCard.propTypes = {
     profileImage: PropTypes.string,
-    name: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+    footer: PropTypes.node,
+    loading: PropTypes.bool,
 }
 
 export default ProfileCard;
