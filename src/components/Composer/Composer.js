@@ -10,13 +10,16 @@ const Composer = ({
     rows,
     value,
     confirmSubmit,
+    confirmSubmitMessage,
     onValueChange,
     onSubmitClick,
 }) => {
     const [ confirmModalOpen, setConfirmModalOpen ] = useState(false);
 
     const handleSubmitClick = (e) => {
-        if (confirmSubmit) {
+        if (value.trim() === "") {
+            return;
+        } else if (confirmSubmit) {
             setConfirmModalOpen(true);
         } else {
             onSubmitClick(e);
@@ -51,6 +54,7 @@ const Composer = ({
                         <button
                             className="btn btn-primary btn-sm"
                             onClick={handleSubmitClick}
+                            disabled={value.trim() === ""}
                         >
                             {submitText}
                         </button>
@@ -64,7 +68,7 @@ const Composer = ({
                     onClose={() => setConfirmModalOpen(false)}
                     onAction={handleModalSubmitClick}
                 >
-                    Are you sure you want to post this announcement?
+                    {confirmSubmitMessage}
                 </Modal>
             )}
         </>

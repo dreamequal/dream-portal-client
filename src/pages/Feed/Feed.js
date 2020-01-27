@@ -85,6 +85,14 @@ const FeedPage = () => {
                             placeholder="New announcement..."
                             submitText="Post"
                             confirmSubmit={true}
+                            confirmSubmitMessage={
+                                <>
+                                    <p className="text-danger">Are you sure you want to post this announcement?</p>
+                                    <p className="text-muted">
+                                        {composerValue}
+                                    </p>
+                                </>
+                            }
                             value={composerValue}
                             onValueChange={(value) => setComposerValue(value)}
                             onSubmitClick={submitPost}
