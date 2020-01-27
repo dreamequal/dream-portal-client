@@ -7,6 +7,7 @@ import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import Composer from "../../components/Composer/Composer";
 import Feed, { ItemTypes } from "../../components/Feed/Feed";
+import FeedItem from "../../components/Feed/FeedItem/FeedItem";
 import Alert, { Types } from "../../components/general/Alert/Alert";
 
 import { fetchUser } from "../../stores/User/UserEffects";
@@ -96,10 +97,17 @@ const FeedPage = () => {
                             confirmSubmit={true}
                             confirmSubmitMessage={
                                 <>
-                                    <p className="text-danger">Are you sure you want to post this announcement?</p>
-                                    <p className="text-muted">
-                                        {composerValue}
-                                    </p>
+                                    <p>Are you sure you want to post this announcement?</p>
+                                    <div className="mt-4">
+                                        <FeedItem
+                                            title=""
+                                            author={`${user.firstName} ${user.lastName}`}
+                                            initials={getInitials(user.firstName, user.lastName)}
+                                            createdAt={Date.now()}
+                                            body={composerValue}
+                                            type={ItemTypes.ANNOUNCEMENT}
+                                        />
+                                    </div>
                                 </>
                             }
                             value={composerValue}

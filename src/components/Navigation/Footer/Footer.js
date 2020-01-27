@@ -9,7 +9,9 @@ const Footer = () => (
             <Row>
                 <Column size={ColumnSizes.TWELVE}>
                     <div className="d-flex justify-content-between">
-                        <p className="text-muted">&copy; Dream Equal 2020</p>
+                        <p className="text-muted">
+                            &copy; Dream Equal {new Date().getFullYear()}
+                        </p>
                         <p className="text-muted">
                             Made by&nbsp;
                             <a
