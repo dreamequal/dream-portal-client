@@ -5,6 +5,7 @@ export const FETCH_RESOURCES_ERROR = "FETCH_RESOURCES_ERROR";
 export const CREATE_RESOURCE_PENDING = "CREATE_RESOURCE_PENDING";
 export const CREATE_RESOURCE_SUCCESS = "CREATE_RESOURCE_SUCCESS";
 export const CREATE_RESOURCE_ERROR = "CREATE_RESOURCE_ERROR";
+export const CREATE_RESOURCE_RESET = "CREATE_RESOURCE_RESET";
 
 /**
  * Fetch resouces
@@ -45,9 +46,15 @@ export const createResourceSuccess = (payload) => {
     }
 }
 
-export const createResourceError = (error) => {
+export const createResourceError = (payload) => {
     return {
         type: CREATE_RESOURCE_ERROR,
-        error,
+        payload,
+    }
+}
+
+export const createResourceReset = () => {
+    return {
+        type: CREATE_RESOURCE_RESET
     }
 }

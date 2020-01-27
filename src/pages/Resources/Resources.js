@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-import { fetchResources, createResource } from "../../stores/Resource/ResourceEffects";
+import {
+    fetchResources,
+    createResource,
+    resetCreateResource
+} from "../../stores/Resource/ResourceEffects";
 import { fetchCategories } from "../../stores/ResourceCategory/ResourceCategoryEffects";
 
 import { getToken } from "../../utils/profile";
@@ -13,9 +16,11 @@ import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import Card, { CardBody } from "../../components/layout/Card/Card";
 import Modal from "../../components/general/Modal/Modal";
+import Alert, { Types as AlertTypes } from "../../components/general/Alert/Alert";
 
 const UploadResourceModal = ({
     onClose,
+    onResourceCreateSuccess,
 }) => {
     const [titleValue, setTitleValue] = useState("");
     const [descriptionValue, setDescriptionValue] = useState("");
@@ -24,11 +29,14 @@ const UploadResourceModal = ({
 
     const categories = useSelector(state => state.resourceCategories.categories);
     const createResourceSuccess = useSelector(state => state.resources.create.success);
+    const formErrors = useSelector(state => state.resources.create.formErrors);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (createResourceSuccess) {
+            onResourceCreateSuccess();
+            dispatch(resetCreateResource());
             onClose();
         }
     }, [dispatch, createResourceSuccess, onClose]);
@@ -37,6 +45,10 @@ const UploadResourceModal = ({
         dispatch(fetchResources(getToken(), 100));
         dispatch(fetchCategories(getToken()));
     }, [dispatch]);
+
+    useEffect(() => {
+        setCategoryValue(categories[0] && categories[0]._id);
+    }, [dispatch, categories]);
 
     const handleSubmit = () => {
         const formFields = {
@@ -55,6 +67,11 @@ const UploadResourceModal = ({
             onClose={onClose}
             onAction={handleSubmit}
         >
+            { formErrors &&
+                Object.entries(formErrors).map((error) =>
+                    <Alert key={error[0]} type={AlertTypes.ERROR} text={error[1].message}/>
+                )
+            }
             <div className="form-group">
                 <input
                     type="text"
@@ -79,10 +96,14 @@ const UploadResourceModal = ({
                     value={categoryValue}
                     onChange={(e) => setCategoryValue(e.target.value)}
                 >
-                    <option selected>Category</option>
                     {
                         categories.map(category => (
-                            <option value={category._id}>{category.title}</option>
+                            <option
+                                key={category._id}
+                                value={category._id}
+                            >
+                                {category.title}
+                            </option>
                         ))
                     }
                 </select>
@@ -90,19 +111,67 @@ const UploadResourceModal = ({
             <div className="form-group">
                 <input
                     type="file"
-                    name="file-2[]"
-                    id="file-2"
+                    name="file[]"
+                    id="file"
                     className="custom-input-file custom-input-file"
                     onChange={(e) => setFileValue(e.target.files[0])}
                 />
-                <label for="file-2">
+                <label htmlFor="file">
                     <Icon name="upload"/>
-                    <span>Choose a file…</span>
+                    <span>
+                        {
+                            fileValue ? fileValue.name : "Choose a file…"
+                        }
+                    </span>
                 </label>
             </div>
         </Modal>
     )
 }
+
+const ExtensionIcon = ({
+    extension
+}) => {
+    switch (extension) {
+        case ".png":
+            return <Icon name="file-image"/>
+        default:
+            return <Icon name="file"/>
+    };
+}
+
+const ResourceCard = ({
+    title,
+    extension,
+    description,
+    filePath
+}) => (
+    <Column size={ColumnSizes.THREE} className="mb-4">
+        <Card className="h-100">
+            <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
+                <ExtensionIcon
+                    extension={extension}
+                />
+            </span>
+            <CardBody>
+                <h5>{title}</h5>
+                <p>{description}</p>
+                <div className="text-center">
+                    <a
+                        href={filePath}
+                        download={`${title}${extension}`}
+                        type="button"
+                        className="btn btn-secondary rounded-circle btn-icon-only"
+                    >
+                        <span className="btn-inner--icon">
+                            <Icon name="arrow-down"/>
+                        </span>
+                    </a>
+                </div>
+            </CardBody>
+        </Card>
+    </Column>
+);
 
 const ResourcesPage = () => {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
@@ -114,6 +183,10 @@ const ResourcesPage = () => {
     useEffect(() => {
         dispatch(fetchResources(getToken(), 100));
     }, [dispatch]);
+
+    const reloadResources = () => {
+        dispatch(fetchResources(getToken(), 100));
+    };
 
     return (
         <>
@@ -128,7 +201,9 @@ const ResourcesPage = () => {
             <Container>
                 {uploadModalOpen && (
                     <UploadResourceModal
-                        onClose={() => setUploadModalOpen(false)}/>
+                        onClose={() => setUploadModalOpen(false)}
+                        onResourceCreateSuccess={reloadResources}
+                    />
                 )}
 
                 <Row>
@@ -158,29 +233,13 @@ const ResourcesPage = () => {
                             <Row noMargin>
                                 {
                                     category.resources.map(resource => (
-                                        <Column size={ColumnSizes.THREE} key={resource._id} className="mb-4">
-                                            <Card className="h-100">
-                                                <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                                                    <Icon name="file-image"/>
-                                                </span>
-                                                <CardBody>
-                                                    <h5>{resource.title}</h5>
-                                                    <p>T{resource.description}</p>
-                                                    <div className="text-center">
-                                                        <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
-                                                            <span className="btn-inner--icon">
-                                                                <Icon name="arrow-down"/>
-                                                            </span>
-                                                        </button>
-                                                        <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
-                                                            <span className="btn-inner--icon">
-                                                                <Icon name="trash-alt"/>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </CardBody>
-                                            </Card>
-                                        </Column>
+                                        <ResourceCard
+                                            key={resource._id}
+                                            title={resource.title}
+                                            extension={resource.extension}
+                                            description={resource.description}
+                                            filePath={resource.filePath}
+                                        />
                                     ))
                                 }
                             </Row>

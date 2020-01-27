@@ -9,6 +9,7 @@ import {
     CREATE_RESOURCE_PENDING,
     CREATE_RESOURCE_SUCCESS,
     CREATE_RESOURCE_ERROR,
+    CREATE_RESOURCE_RESET,
 } from "./ResourceActions";
 
 const reducerDefaults = {
@@ -18,7 +19,7 @@ const reducerDefaults = {
     },
     create: {
         isLoading: false,
-        error: false,
+        formErrors: [],
         success: false,
     },
 };
@@ -51,17 +52,22 @@ const ResourceReducer = (state=initialState, action) => {
         case CREATE_RESOURCE_PENDING:
             return {
                 ...state,
-                create: { isLoading: true, success: false },
+                create: { isLoading: true, formErrors: [], success: false },
             };
         case CREATE_RESOURCE_SUCCESS:
             return {
                 ...state,
-                create: { isLoading: false, error: false, success: true },
+                create: { isLoading: false, formErrors: [], success: true },
             };
         case CREATE_RESOURCE_ERROR:
             return {
                 ...state,
-                create: { isLoading: false, error: action.error, success: false },
+                create: { isLoading: false, formErrors: action.payload.errors, success: false },
+            };
+        case CREATE_RESOURCE_RESET:
+            return {
+                ...state,
+                create: reducerDefaults.create
             };
         case LOCATION_CHANGE:
             return {

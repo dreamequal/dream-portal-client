@@ -9,6 +9,7 @@ import {
     createResourcePending,
     createResourceSuccess,
     createResourceError,
+    createResourceReset,
 } from "./ResourceActions";
 
 export const fetchResources = (token, limit) => {
@@ -58,14 +59,20 @@ export const createResource = (token, resourceData, file) => {
         })
             .then(res => res.data)
             .then(res => {
-                if (res.message) {
-                    throw(res.message);
+                if (res.errors) {
+                    throw(res.errors);
                 }
                 dispatch(createResourceSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(createResourceError(error));
+                dispatch(createResourceError(error.response.data.message));
             })
+    }
+};
+
+export const resetCreateResource = (token, resourceData, file) => {
+    return dispatch => {
+        dispatch(createResourceReset());
     }
 };

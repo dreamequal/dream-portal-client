@@ -1,6 +1,6 @@
 const dev = {
     auth: {
-        tokenStorageKey: "auth-token",
+        tokenStorageKey: "SOME_TOKEN",
     },
     apiGateway: {
         URL: "http://localhost:8080/api"
@@ -9,7 +9,7 @@ const dev = {
 
 const prod = {
     auth: {
-        tokenStorageKey: "auth-token",
+        tokenStorageKey: "SOME_TOKEN",
     },
     apiGateway: {
         URL: "http://localhost:8080/api"
