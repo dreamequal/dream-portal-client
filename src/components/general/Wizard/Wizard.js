@@ -13,13 +13,15 @@ const Wizard = ({
     onClose,
     children,
 }) => {
-    const isLastStep = step - 1 === React.Children.count(children);
+    const isLastStep = step === React.Children.count(children) - 1;
+    const canStep = React.Children.toArray(children)[step].props.canStep;
 
     const handleContinue = () => {
         if (isLastStep) {
             onComplete();
         } else {
-            onStep();
+            const stepTo = React.Children.toArray(children)[step].props.stepTo || step + 1;
+            onStep(stepTo);
         }
     };
 
@@ -29,6 +31,7 @@ const Wizard = ({
             onClose={onClose}
             onAction={handleContinue}
             actionText={isLastStep ? completeText : stepText}
+            actionDisabled={!canStep}
         >
             {React.Children.toArray(children)[step]}
         </Modal>
@@ -51,11 +54,22 @@ Wizard.defaultProps = {
 };
 
 export const Step = ({
-    children
+    children,
+    canStep,
+    stepTo,
 }) => (
     <div>
         {children}
     </div>
 );
+
+Step.propTypes = {
+    canStep: PropTypes.bool,
+    stepTo: PropTypes.number,
+};
+
+Step.defaultProps = {
+    canStep: true,
+};
 
 export default Wizard;

@@ -7,6 +7,7 @@ const Modal = ({
     onClose,
     onAction,
     actionText,
+    actionDisabled,
     title,
 }) => ReactDOM.createPortal((
         <div style={{
@@ -48,6 +49,7 @@ const Modal = ({
                                     type="button"
                                     className="btn btn-primary btn-sm"
                                     onClick={onAction}
+                                    disabled={actionDisabled}
                                 >
                                     {actionText}
                                 </button>

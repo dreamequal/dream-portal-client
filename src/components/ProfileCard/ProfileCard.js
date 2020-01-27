@@ -29,7 +29,7 @@ const ProfileCard = ({
                     />
 
                     <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
-                    <span class="d-block text-sm text-muted mb-3">@{username}</span>
+                    <span className="d-block text-sm text-muted mb-3">@{username}</span>
                     {footer}
                 </>
             )}

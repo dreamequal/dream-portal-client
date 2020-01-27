@@ -25,7 +25,6 @@ const SignupPage = () => {
      * Watch for a proper signup for redirect
      */
     useEffect(() => {
-        console.log(isAuthenticated, userToken);
         if (isAuthenticated && userToken) {
             setToken(userToken);
             dispatch(push("/"));

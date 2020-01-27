@@ -38,8 +38,9 @@ const SignupPage = () => {
         }
     });
 
-    const onRegisterUser = (e) => {
-        e.preventDefault();
+    const onRegisterUser = () => {
+        // Close Wizard
+        setPoliciesWizardOpen(false)
 
         // Attempt to register the user
         dispatch(registerUser({

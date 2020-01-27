@@ -78,9 +78,9 @@ const FeedPage = () => {
                         lastName={user.lastName}
                         username={user.username}
                         footer={
-                            <div class="actions d-flex justify-content-center">
-                                <Link to="/settings" class="action-item">
-                                    <i class="fas fa-user-edit"></i>
+                            <div className="actions d-flex justify-content-center">
+                                <Link to="/settings" className="action-item">
+                                    <i className="fas fa-user-edit"></i>
                                 </Link>
                             </div>
                         }

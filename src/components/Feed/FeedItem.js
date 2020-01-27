@@ -12,25 +12,25 @@ const FeedItem = ({
     body,
     type,
 }) => (
-    <div class="card">
-        <div class="card-header py-4 d-flex align-items-center">
+    <div className="card">
+        <div className="card-header py-4 d-flex align-items-center">
             <div>
                 <img
                     alt="Avatar"
                     src="https://placedog.net/500"
-                    class="avatar rounded-circle hover-shadow-lg hover-scale-110"
+                    className="avatar rounded-circle hover-shadow-lg hover-scale-110"
                 />
             </div>
-            <div class="pl-3">
-                <div class="text-sm">
-                    <a href="#!" class="font-weight-bold">{author}</a>
+            <div className="pl-3">
+                <div className="text-sm">
+                    <a href="#!" className="font-weight-bold">{author}</a>
                     { type === ItemTypes.ANNOUNCEMENT && <Badge text="Announcement"/> }
                 </div>
-                <small class="d-block">{date}</small>
+                <small className="d-block">{date}</small>
             </div>
         </div>
-        <div class="card-body">
-            <p class="card-text">
+        <div className="card-body">
+            <p className="card-text">
                 {body}
             </p>
         </div>

@@ -8,15 +8,40 @@ const PoliciesWizard = ({
 }) => {
     const [step, setStep] = useState(0);
 
+    // Form data
+    const [selectedMinorSelect, setSelectedMinorSelect] = useState();
+    const [minorAgreeFirstSelected, setMinorAgreeFirstSelected] = useState(false);
+    const [minorAgreeSecondSelected, setMinorAgreeSecondSelected] = useState(false);
+    const [privacyPolicyAgreeSelected, setPrivacyPolicyAgreeSelected] = useState(false);
+    const [safetyPolicyAgreeSelected, setSafetyPolicyAgreeSelected] = useState(false);
+
+    // Minor select
+    const handleMinorSelectChange = e => setSelectedMinorSelect(e.target.id);
+    const handleMinorAgreeFirstChange = e => setMinorAgreeFirstSelected(e.target.checked);
+    const handleMinorAgreeSecondChange = e => setMinorAgreeSecondSelected(e.target.checked);
+    const handlePrivacyPolicyAgreeChange = e => setPrivacyPolicyAgreeSelected(e.target.checked);
+    const handleSafetyPolicyAgreeChange = e => setSafetyPolicyAgreeSelected(e.target.checked);
+
     return (
         <Wizard
             title="Terms & Conditions"
             step={step}
-            onStep={() => setStep(step + 1)}
+            onStep={(stepTo) => setStep(stepTo)}
             onComplete={onComplete}
             onClose={onClose}
         >
-            <Step title="Safety and Security Policy">
+            {
+                /**
+                 * Safety and Security Policy
+                 */
+            }
+            <Step
+                title="Safety and Security Policy"
+                stepTo={
+                    selectedMinorSelect === "minor-select-adult" ? 2 : 1
+                }
+                canStep={!!selectedMinorSelect}
+            >
                 <p>
                     Please read DREAM EQUAL, Inc.'s official Safety and Security Policy located&nbsp;
                     <a
@@ -27,26 +52,30 @@ const PoliciesWizard = ({
                         here
                     </a>.
                 </p>
-                <div class="custom-control custom-radio">
+                <div className="custom-control custom-radio">
                     <input
                         type="radio"
                         id="minor-select-adult"
                         name="minorSelect"
-                        class="custom-control-input"
+                        className="custom-control-input"
+                        checked={selectedMinorSelect === "minor-select-adult"}
+                        onChange={handleMinorSelectChange}
                     />
-                    <label class="custom-control-label" htmlFor="minor-select-adult">
+                    <label className="custom-control-label" htmlFor="minor-select-adult">
                         <strong>I am not a minor</strong> and I have read through the entire DREAM EQUAL
                         Safety and Security policy and agree to follow the terms outlined.
                     </label>
                 </div>
-                <div class="custom-control custom-radio">
+                <div className="custom-control custom-radio">
                     <input
                         type="radio"
                         id="minor-select-minor"
                         name="minorSelect"
-                        class="custom-control-input"
+                        className="custom-control-input"
+                        checked={selectedMinorSelect === "minor-select-minor"}
+                        onChange={handleMinorSelectChange}
                     />
-                    <label class="custom-control-label" htmlFor="minor-select-minor">
+                    <label className="custom-control-label" htmlFor="minor-select-minor">
                         <strong>I am a minor</strong> and I have read through the entire DREAM EQUAL safety and
                         security policy and I agree to follow the terms outlined in it.
                         I will also have my parent(s)/guardian(s) read and agree to the
@@ -54,10 +83,19 @@ const PoliciesWizard = ({
                     </label>
                 </div>
             </Step>
-            <Step title="Safety and Security Policy (ctd.)">
-                <div class="mb-4">
+
+            {
+                /**
+                 * Safety and Security Policy for minors
+                 */
+            }
+            <Step title="Safety and Security Policy (ctd.)"
+                stepTo={2}
+                canStep={minorAgreeFirstSelected && minorAgreeSecondSelected}
+            >
+                <div className="mb-4">
                     <textarea
-                        class="form-control"
+                        className="form-control"
                         rows="4"
                         resize="none"
                         readOnly
@@ -85,22 +123,24 @@ const PoliciesWizard = ({
                         require. I agree that this Release shall be governed for all purposes by federal law,
                         without regard to its choice of law provisions."
                     ></textarea>
-                    <div class="custom-control custom-checkbox">
+                    <div className="custom-control custom-checkbox">
                         <input
                             type="checkbox"
                             id="minor-agree-first"
                             name="minorAgree"
-                            class="custom-control-input"
+                            className="custom-control-input"
+                            checked={minorAgreeFirstSelected}
+                            onChange={handleMinorAgreeFirstChange}
                         />
-                        <label class="custom-control-label" htmlFor="minor-agree-first">
+                        <label className="custom-control-label" htmlFor="minor-agree-first">
                             I have read and agree to the terms above
                         </label>
                     </div>
                 </div>
 
-                <div class="mb-4">
+                <div className="mb-4">
                     <textarea
-                        class="form-control"
+                        className="form-control"
                         rows="4"
                         resize="none"
                         readOnly
@@ -113,20 +153,31 @@ const PoliciesWizard = ({
                         activities and that my minor child will be solely responsible for their own general wellbeing
                         throughout programming."
                     ></textarea>
-                    <div class="custom-control custom-checkbox">
+                    <div className="custom-control custom-checkbox">
                         <input
                             type="checkbox"
                             id="minor-agree-second"
                             name="minorAgree"
-                            class="custom-control-input"
+                            className="custom-control-input"
+                            checked={minorAgreeSecondSelected}
+                            onChange={handleMinorAgreeSecondChange}
                         />
-                        <label class="custom-control-label" htmlFor="minor-agree-second">
+                        <label className="custom-control-label" htmlFor="minor-agree-second">
                             I have read and agree to the terms above
                         </label>
                     </div>
                 </div>
             </Step>
-            <Step title="Privacy & Internet Safety Policies">
+
+            {
+                /**
+                 * Privacy & Internet Safety Policies
+                 */
+            }
+            <Step
+                title="Privacy & Internet Safety Policies"
+                canStep={privacyPolicyAgreeSelected && safetyPolicyAgreeSelected}
+            >
                 <div>
                     <p>
                         Please read DREAM EQUAL, Inc.'s official Privacy Policy located&nbsp;
@@ -138,19 +189,21 @@ const PoliciesWizard = ({
                             here
                         </a>.
                     </p>
-                    <div class="custom-control custom-checkbox">
+                    <div className="custom-control custom-checkbox">
                         <input
                             type="checkbox"
-                            id="minor-agree-second"
-                            name="minorAgree"
-                            class="custom-control-input"
+                            id="privacy-policy-agree"
+                            name="priacyPolicyAgree"
+                            className="custom-control-input"
+                            checked={privacyPolicyAgreeSelected}
+                            onChange={handlePrivacyPolicyAgreeChange}
                         />
-                        <label class="custom-control-label" htmlFor="minor-agree-second">
+                        <label className="custom-control-label" htmlFor="privacy-policy-agree">
                             I have read through, understand, and have no problems with DREAM EQUAL's Privacy Policy.
                         </label>
                     </div>
                 </div>
-                <div class="mt-5">
+                <div className="mt-5">
                     <p>
                         Please read DREAM EQUAL, Inc.'s official Internet Safety Policy located&nbsp;
                         <a
@@ -161,14 +214,16 @@ const PoliciesWizard = ({
                             here
                         </a>.
                     </p>
-                    <div class="custom-control custom-checkbox">
+                    <div className="custom-control custom-checkbox">
                         <input
                             type="checkbox"
-                            id="minor-agree-second"
-                            name="minorAgree"
-                            class="custom-control-input"
+                            id="safety-policy-agree"
+                            name="safetyPolicyAgree"
+                            className="custom-control-input"
+                            checked={safetyPolicyAgreeSelected}
+                            onChange={handleSafetyPolicyAgreeChange}
                         />
-                        <label class="custom-control-label" htmlFor="minor-agree-second">
+                        <label className="custom-control-label" htmlFor="safety-policy-agree">
                             I have read through the Internet Safety & Security Agreement and I agree to follow the terms outlined in it. 
                         </label>
                     </div>
