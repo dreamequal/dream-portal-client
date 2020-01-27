@@ -10,6 +10,7 @@ import { fetchCategories } from "../../stores/ResourceCategory/ResourceCategoryE
 import { fetchUser } from "../../stores/User/UserEffects";
 
 import { getToken } from "../../utils/profile";
+import { getExtensionIcon } from "../../utils/file";
 
 import Icon from "../../components/general/Icon/Icon";
 import Hero from "../../components/layout/Hero/Hero";
@@ -135,17 +136,6 @@ const UploadResourceModal = ({
     )
 }
 
-const ExtensionIcon = ({
-    extension
-}) => {
-    switch (extension) {
-        case ".png":
-            return <Icon name="file-image"/>
-        default:
-            return <Icon name="file"/>
-    };
-}
-
 const ResourceCard = ({
     title,
     extension,
@@ -155,9 +145,7 @@ const ResourceCard = ({
     <Column size={ColumnSizes.THREE} className="mb-4">
         <Card className="h-100">
             <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                <ExtensionIcon
-                    extension={extension}
-                />
+                <Icon name={getExtensionIcon(extension)}/>
             </span>
             <CardBody>
                 <h5>{title}</h5>
