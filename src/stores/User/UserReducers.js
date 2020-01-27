@@ -29,6 +29,7 @@ const reducerDefaults = {
     register: {
         isLoading: false,
         error: false,
+        formErrors: [],
     },
     fetch: {
         isLoading: false,
@@ -37,11 +38,13 @@ const reducerDefaults = {
     login: {
         isLoading: false,
         error: false,
+        formErrors: [],
     },
     update: {
         isLoading: false,
         error: false,
         success: false,
+        formErrors: [],
     },
     logout: {
         isLoading: false,
@@ -80,14 +83,14 @@ const UserReducer = (state=initialState, action) => {
         case LOGIN_USER_PENDING:
             return {
                 ...state,
-                login: { isLoading: true },
+                login: { isLoading: true, error: false },
             };
         case LOGIN_USER_SUCCESS:
             return {
                 ...state,
                 token: action.payload.token,
                 isAuthenticated: true,
-                login: { isLoading: false, error: false },
+                login: { isLoading: false, error: false, },
             };
         case LOGIN_USER_ERROR:
             return {
@@ -98,7 +101,7 @@ const UserReducer = (state=initialState, action) => {
         case REGISTER_USER_PENDING:
             return {
                 ...state,
-                register: { isLoading: true },
+                register: { isLoading: true, formErrors: [] },
             };
         case REGISTER_USER_SUCCESS:
             return {
@@ -106,29 +109,29 @@ const UserReducer = (state=initialState, action) => {
                 profile: action.payload.profile,
                 isAuthenticated: true,
                 token: action.payload.token,
-                register: { isLoading: false, error: false },
+                register: { isLoading: false, error: false, formErrors: [] },
             };
         case REGISTER_USER_ERROR:
             return {
                 ...state,
-                register: { isLoading: false, error: action.error },
+                register: { isLoading: false, formErrors: action.payload.errors },
             };
         // Update
         case UPDATE_USER_PENDING:
             return {
                 ...state,
-                update: { isLoading: true, success: false },
+                update: { isLoading: true, success: false, formErrors: [] },
             };
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 profile: action.payload,
-                update: { isLoading: false, error: false, success: true },
+                update: { isLoading: false, error: false, success: true, formErrors: [] },
             };
         case UPDATE_USER_ERROR:
             return {
                 ...state,
-                update: { isLoading: false, error: action.error, success: false },
+                update: { isLoading: false, formErrors: action.payload.errors, success: false },
             };
         // Logout
         case LOGOUT_USER_PENDING:

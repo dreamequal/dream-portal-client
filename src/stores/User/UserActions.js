@@ -80,10 +80,10 @@ export const registerUserSuccess = (payload) => {
     }
 }
 
-export const registerUserError = (error) => {
+export const registerUserError = (payload) => {
     return {
         type: REGISTER_USER_ERROR,
-        error,
+        payload,
     }
 }
 
@@ -103,10 +103,10 @@ export const updateUserSuccess = (payload) => {
     }
 }
 
-export const updateUserError = (error) => {
+export const updateUserError = (payload) => {
     return {
         type: UPDATE_USER_ERROR,
-        error,
+        payload,
     }
 }
 

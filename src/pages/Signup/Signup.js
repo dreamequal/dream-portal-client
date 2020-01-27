@@ -15,10 +15,11 @@ const SignupPage = () => {
     // Form values
     const [ emailValue, setEmailValue ] = useState("");
     const [ passwordValue, setPasswordValue ] = useState("");
+    const [ usernameValue, setUsernameValue ] = useState("");
     const [ firstNameValue, setFirstNameValue ] = useState("");
     const [ lastNameValue, setLastNameValue ] = useState("");
 
-    const formError = useSelector(state => state.user.register.error);
+    const formErrors = useSelector(state => state.user.register.formErrors);
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     const userToken = useSelector(state => state.user.token);
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const SignupPage = () => {
         // Attempt to register the user
         dispatch(registerUser({
             email: emailValue,
+            username: usernameValue,
             password: passwordValue,
             firstName: firstNameValue,
             lastName: lastNameValue
@@ -64,7 +66,11 @@ const SignupPage = () => {
                 <Column size={ColumnSizes.SIX}>
                     <Card>
                         <CardBody>
-                            { formError && <Alert type={AlertTypes.ERROR} text={formError.toString()}/> }
+                            {   formErrors &&
+                                Object.entries(formErrors).map((error) =>
+                                    <Alert key={error[0]} type={AlertTypes.ERROR} text={error[1].message}/>
+                                )
+                            }
                             <form onSubmit={onRegisterUser}>
                                 <div className="form-group">
                                     <label className="form-control-label">First Name</label>
@@ -82,6 +88,15 @@ const SignupPage = () => {
                                         className="form-control"
                                         value={lastNameValue}
                                         onChange={(e) => setLastNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Username</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={usernameValue}
+                                        onChange={(e) => setUsernameValue(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">

@@ -14,13 +14,14 @@ import { getToken } from "../../utils/profile";
 const SignupPage = () => {
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.user.update.isLoading);
-    const formError = useSelector(state => state.user.update.error);
+    const formErrors = useSelector(state => state.user.update.formErrors);
     const formSuccess = useSelector(state => state.user.update.success);
     const user = useSelector(state => state.user.profile);
 
     // Form values
     const [ firstNameValue, setFirstNameValue ] = useState("");
     const [ lastNameValue, setLastNameValue ] = useState("");
+    const [ usernameValue, setUsernameValue ] = useState("");
 
     // Pull user
     useEffect(() => dispatch(fetchUser(getToken())), [dispatch]);
@@ -28,6 +29,7 @@ const SignupPage = () => {
     // Watch for store changes
     useEffect(() => setFirstNameValue(user.firstName), [user.firstName]);
     useEffect(() => setLastNameValue(user.lastName), [user.lastName]);
+    useEffect(() => setUsernameValue(user.username), [user.username]);
 
     if (isLoading || !user) {
         return <Loading/>;
@@ -40,6 +42,7 @@ const SignupPage = () => {
         dispatch(updateUser(getToken(), {
             firstName: firstNameValue,
             lastName: lastNameValue,
+            username: usernameValue,
         }));
     };
 
@@ -59,11 +62,10 @@ const SignupPage = () => {
                         <CardBody>
                             <h3>Profile</h3>
                             { formSuccess && <Alert type={AlertTypes.SUCCESS} text={"User profile updated"} /> }
-                            { formError &&
-                                <Alert
-                                    type={AlertTypes.ERROR}
-                                    text={formError.toString()}
-                                />
+                            {   formErrors &&
+                                Object.entries(formErrors).map((error) =>
+                                    <Alert key={error[0]} type={AlertTypes.ERROR} text={error[1].message}/>
+                                )
                             }
                             <form onSubmit={onUpdateUser}>
                                 <div className="form-group">
@@ -82,6 +84,15 @@ const SignupPage = () => {
                                         className="form-control"
                                         value={lastNameValue}
                                         onChange={(e) => setLastNameValue(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-control-label">Username</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={usernameValue}
+                                        onChange={(e) => setUsernameValue(e.target.value)}
                                     />
                                 </div>
                                 <div className="text-right">

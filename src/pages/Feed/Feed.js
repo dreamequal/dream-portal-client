@@ -85,6 +85,7 @@ const FeedPage = () => {
                         <Composer
                             placeholder="New announcement..."
                             submitText="Post"
+                            confirmSubmit={true}
                             value={composerValue}
                             onValueChange={(value) => setComposerValue(value)}
                             onSubmitClick={submitPost}

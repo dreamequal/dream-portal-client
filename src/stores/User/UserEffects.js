@@ -69,7 +69,7 @@ export const loginUser = (user) => {
                 return res;
             })
             .catch(error => {
-                dispatch(loginUserError(error));
+                dispatch(loginUserError(error.response.data.message));
             })
     }
 };
@@ -87,14 +87,14 @@ export const registerUser = (user) => {
         })
             .then(res => res.data)
             .then(res => {
-                if (res.message) {
-                    throw(res.message);
+                if (res.errors) {
+                    throw(res.errors);
                 }
                 dispatch(registerUserSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(registerUserError(error));
+                dispatch(registerUserError(error.response.data.message));
             })
     }
 };
@@ -113,14 +113,14 @@ export const updateUser = (token, user) => {
         })
             .then(res => res.data)
             .then(res => {
-                if (res.message) {
-                    throw(res.message);
+                if (res.errors) {
+                    throw(res.errors);
                 }
                 dispatch(updateUserSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(updateUserError(error));
+                dispatch(updateUserError(error.response.data.message));
             })
     }
 };
