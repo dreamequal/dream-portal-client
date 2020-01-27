@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom";
 
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
@@ -75,6 +76,14 @@ const FeedPage = () => {
                         loading={isUserLoading}
                         firstName={user.firstName}
                         lastName={user.lastName}
+                        username={user.username}
+                        footer={
+                            <div class="actions d-flex justify-content-center">
+                                <Link to="/settings" class="action-item">
+                                    <i class="fas fa-user-edit"></i>
+                                </Link>
+                            </div>
+                        }
                     />
                 </Column>
                 <Column size={ColumnSizes.NINE}>
