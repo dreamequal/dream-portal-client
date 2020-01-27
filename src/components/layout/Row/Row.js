@@ -37,8 +37,9 @@ Row.defaultProps = {
 export const Column = ({
     size,
     children,
+    className,
 }) => {
-    const classNames = classnames({
+    const classNames = classnames(className, {
         "col-1": size === ColumnSizes.ONE,
         "col-2": size === ColumnSizes.TWO,
         "col-3": size === ColumnSizes.THREE,

@@ -9,7 +9,7 @@ export const CREATE_CATEGORY_ERROR = "CREATE_CATEGORY_ERROR";
 /**
  * Fetch catagories
  */
-export const fetchCatagoriesPending = () => {
+export const fetchCategoriesPending = () => {
     return {
         type: FETCH_CATEGORIES_PENDING
     }

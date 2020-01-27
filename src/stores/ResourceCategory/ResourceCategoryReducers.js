@@ -28,7 +28,7 @@ const initialState = {
     ...reducerDefaults,
 };
 
-const CategoryReducer = (state=initialState, action) => {
+const ResourceCategoryReducer = (state=initialState, action) => {
     switch(action.type) {
         // Fetch
         case FETCH_CATEGORIES_PENDING:
@@ -73,4 +73,4 @@ const CategoryReducer = (state=initialState, action) => {
     }
 }
 
-export default CategoryReducer;
+export default ResourceCategoryReducer;
