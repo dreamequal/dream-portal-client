@@ -7,6 +7,7 @@ import {
     resetCreateResource
 } from "../../stores/Resource/ResourceEffects";
 import { fetchCategories } from "../../stores/ResourceCategory/ResourceCategoryEffects";
+import { fetchUser } from "../../stores/User/UserEffects";
 
 import { getToken } from "../../utils/profile";
 
@@ -176,12 +177,14 @@ const ResourceCard = ({
 const ResourcesPage = () => {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
+    const user = useSelector(state => state.user.profile);
     const resources = useSelector(state => state.resources.resources);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchResources(getToken(), 100));
+        dispatch(fetchUser(getToken()));
     }, [dispatch]);
 
     const reloadResources = () => {
@@ -206,19 +209,21 @@ const ResourcesPage = () => {
                     />
                 )}
 
-                <Row>
-                    <Column size={ColumnSizes.TWELVE}>
-                        <button
-                            className="btn btn-primary rounded-pill btn-icon"
-                            onClick={() => setUploadModalOpen(true)}
-                        >
-                            <span className="btn-inner--icon">
-                                <Icon name="upload"/>
-                            </span>
-                            <span className="btn-inner--text">Upload Resource</span>
-                        </button>
-                    </Column>
-                </Row>
+                { user.permissions > 1 &&
+                    <Row>
+                        <Column size={ColumnSizes.TWELVE}>
+                            <button
+                                className="btn btn-primary rounded-pill btn-icon"
+                                onClick={() => setUploadModalOpen(true)}
+                            >
+                                <span className="btn-inner--icon">
+                                    <Icon name="upload"/>
+                                </span>
+                                <span className="btn-inner--text">Upload Resource</span>
+                            </button>
+                        </Column>
+                    </Row>
+                }
 
                 {
                     resources.map(category => (
