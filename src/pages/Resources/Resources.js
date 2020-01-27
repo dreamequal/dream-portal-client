@@ -40,7 +40,7 @@ const UploadResourceModal = ({
             dispatch(resetCreateResource());
             onClose();
         }
-    }, [dispatch, createResourceSuccess, onClose]);
+    }, [dispatch, createResourceSuccess, onResourceCreateSuccess, onClose]);
 
     useEffect(() => {
         dispatch(fetchResources(getToken(), 100));
@@ -177,6 +177,7 @@ const ResourceCard = ({
 const ResourcesPage = () => {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
+    const fetchResourcesLoading = useSelector(state => state.resources.fetch.loading);
     const user = useSelector(state => state.user.profile);
     const resources = useSelector(state => state.resources.resources);
 
@@ -225,7 +226,17 @@ const ResourcesPage = () => {
                     </Row>
                 }
 
-                {
+                { fetchResourcesLoading &&
+                    <Row>
+                        <Column size={ColumnSizes.TWELVE}>
+                            <div className="text-center">
+                                <div className="spinner-grow" role="status"></div>
+                            </div>
+                        </Column>
+                    </Row>
+                }
+
+                { !fetchResourcesLoading &&
                     resources.map(category => (
                         <div key={category._id}>
                             <Row>

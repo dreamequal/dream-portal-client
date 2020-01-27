@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loading from "../../components/general/Loading/Loading";
 import Container from "../../components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";

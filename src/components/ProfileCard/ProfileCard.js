@@ -24,7 +24,6 @@ const ProfileCard = ({
                         image={profileImage}
                         size={Sizes.LG}
                         initials={getInitials(firstName, lastName)}
-                        active
                     />
 
                     <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
