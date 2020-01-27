@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Icon from "../../components/general/Icon/Icon";
 import Hero from "../../components/layout/Hero/Hero";
@@ -76,9 +77,9 @@ const ResourcesPage = () => {
                     </Column>
                 </Row>
 
-                <Row>
+                <Row noMargin>
                     <Column size={ColumnSizes.THREE}>
-                        <Card>
+                        <Card className="h-100">
                             <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
                                 <Icon name="file-image"/>
                             </span>
@@ -100,28 +101,14 @@ const ResourcesPage = () => {
                             </CardBody>
                         </Card>
                     </Column>
-                    <Column size={ColumnSizes.THREE}>
-                        <Card>
-                            <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                                <Icon name="file"/>
-                            </span>
-                            <CardBody>
-                                <h5>Styleguide</h5>
-                                <p>Documentation on our colors and fonts.</p>
-                                <div className="text-center">
-                                    <button type="button" className="btn btn-secondary rounded-circle btn-icon-only">
-                                        <span className="btn-inner--icon">
-                                            <Icon name="arrow-down"/>
-                                        </span>
-                                    </button>
-                                    <button type="button" className="btn btn-danger rounded-circle btn-icon-only">
-                                        <span className="btn-inner--icon">
-                                            <Icon name="trash-alt"/>
-                                        </span>
-                                    </button>
-                                </div>
-                            </CardBody>
-                        </Card>
+                </Row>
+                <Row>
+                    <Column size={ColumnSizes.TWELVE}>
+                        <div className="text-right">
+                            <Link className="btn btn-secondary btn-small">
+                                Load More
+                            </Link>
+                        </div>
                     </Column>
                 </Row>
             </Container>

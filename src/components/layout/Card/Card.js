@@ -15,8 +15,9 @@ const Card = ({
     children,
     align,
     type,
+    className,
 }) => {
-    const classNames = classnames("card", {
+    const classNames = classnames("card", className, {
         "text-center": align === Alignments.CENTER,
         "bg-info": type === Types.INFO,
         "bg-warning": type === Types.WARNING,

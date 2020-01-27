@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 export const ColumnSizes = {
@@ -18,11 +19,20 @@ export const ColumnSizes = {
 
 const Row = ({
     children,
+    noMargin
 }) => (
-    <div className="row mb-5">
+    <div className={classnames("row", { "mb-5": !noMargin, "mb-4": noMargin })}>
         {children}
     </div>
 );
+
+Row.propTypes = {
+    noMargin: PropTypes.bool,
+};
+
+Row.defaultProps = {
+    noMargin: false,
+};
 
 export const Column = ({
     size,
