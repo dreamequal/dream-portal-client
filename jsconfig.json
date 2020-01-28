@@ -4,11 +4,11 @@
         "target": "es6",
         "module": "commonjs",
         "paths": {
-            "components/**/*": ["./src/components/**/*"],
-            "config/*": ["./src/config/**/*"],
-            "pages/**/*": ["./src/pages/**/*"],
-            "stores/**/*": ["./src/stores/**/*"],
-            "utils/**/*": ["./src/utils/**/*"]
+            "components/**/*": ["components/**/*"],
+            "config/**/*": ["config/**/*"],
+            "pages/**/*": ["pages/**/*"],
+            "stores/**/*": ["stores/**/*"],
+            "utils/**/*": ["utils/**/*"]
         }
     },
     "include": [
