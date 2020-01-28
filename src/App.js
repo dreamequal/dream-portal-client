@@ -71,7 +71,7 @@ const App = () => {
     return (
         <ConnectedRouter history={history}>
             <Navbar
-                logo="/logo.png"
+                logo="../logo.png"
                 tree={tree}
                 dark
             />

@@ -1,18 +1,18 @@
 const dev = {
     auth: {
-        tokenStorageKey: "auth-token",
+        tokenStorageKey: process.env.REACT_APP_TOKEN_STORAGE_KEY || "auth-token",
     },
     apiGateway: {
-        URL: "http://localhost:8080/api"
+        URL: process.env.REACT_APP_API_GATEWAY || "http://localhost:8080/api"
     },
 };
 
 const prod = {
     auth: {
-        tokenStorageKey: "auth-token",
+        tokenStorageKey: process.env.REACT_APP_TOKEN_STORAGE_KEY || "auth-token",
     },
     apiGateway: {
-        URL: "http://localhost:8080/api"
+        URL: process.env.REACT_APP_API_GATEWAY || "http://localhost:8080/api"
     },
 };
 
