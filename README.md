@@ -2,6 +2,8 @@
 
 This is the Dream Portal Client (DPC) SPA. It's buit using React + Redux and connects to the [Dream Portal Server](https://github.com/noahbuscher/dream-portal-server) to handle, validate, and store data.
 
+![DPC Screenshot](https://dream-portal-documents.s3-us-west-1.amazonaws.com/screenshot.png)
+
 ## Development
 
 It's quite easy to get a local instance of DPC running on your machine. Just clone this repository, run `npm install`, and start the development server with `npm start`. This will kick off the Babel transpiling and will have a local server running that will watch your files and live-reload as you edit them. Then just visit `http://localhost:3000` to get started!
