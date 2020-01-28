@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loading from "../../components/general/Loading/Loading";
 import Hero from "../../components/layout/Hero/Hero";
 import Card, { CardBody, Types } from "../../components/layout/Card/Card";
 import Icon from "../../components/general/Icon/Icon";
