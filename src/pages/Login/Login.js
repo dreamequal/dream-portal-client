@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from 'connected-react-router';
 
-import { loginUser } from "../../stores/User/UserEffects";
+import { loginUser } from "stores/User/UserEffects";
 
-import Container from "../../components/layout/Container/Container";
-import Card, { CardBody } from "../../components/layout/Card/Card";
-import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
-import Alert, { Types as AlertTypes } from "../../components/general/Alert/Alert";
+import Container from "components/layout/Container/Container";
+import Card, { CardBody } from "components/layout/Card/Card";
+import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
+import Alert, { Types as AlertTypes } from "components/general/Alert/Alert";
 
-import { setToken } from "../../utils/profile";
+import { setToken } from "utils/profile";
 
 const SignupPage = () => {
     // Form values

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import Card, { CardBody, CardFooter } from "../../components/layout/Card/Card";
-import Modal from "../../components/general/Modal/Modal";
+import Card, { CardBody, CardFooter } from "components/layout/Card/Card";
+import Modal from "components/general/Modal/Modal";
 
 const Composer = ({
     placeholder,
@@ -80,7 +80,7 @@ Composer.propTypes = {
     submitText: PropTypes.string.isRequired,
     rows: PropTypes.number,
     value: PropTypes.string,
-    confirmSubmit: PropTypes.func,
+    confirmSubmit: PropTypes.bool,
     confirmSubmitMessage: PropTypes.node,
     onValueChange: PropTypes.func.isRequired,
     onSubmitClick: PropTypes.func.isRequired,

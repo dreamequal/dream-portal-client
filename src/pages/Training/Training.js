@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Hero from "../../components/layout/Hero/Hero";
+import Hero from "components/layout/Hero/Hero";
 
 const TrainingPage = () => {
     return (

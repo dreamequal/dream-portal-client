@@ -2,25 +2,25 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ConnectedRouter, push } from "connected-react-router";
 import { Route, Switch , Redirect} from "react-router";
-import history from "./utils/history";
-import PrivateRoute from "./components/navigation/PrivateRoute/PrivateRoute";
+import history from "utils/history";
+import PrivateRoute from "components/navigation/PrivateRoute/PrivateRoute";
 
-import Navbar, { NavbarAlignments } from "./components/navigation/Navbar/Navbar";
-import Footer from "./components/navigation/Footer/Footer";
+import Navbar, { NavbarAlignments } from "components/navigation/Navbar/Navbar";
+import Footer from "components/navigation/Footer/Footer";
 
-import { logoutUser } from "./stores/User/UserEffects";
+import { logoutUser } from "stores/User/UserEffects";
 
 /**
  * Pages
  */
-import Landing from "./pages/Landing/Landing";
-import Feed from "./pages/Feed/Feed";
-import Resources from "./pages/Resources/Resources";
-import Training from "./pages/Training/Training";
-import Profile from "./pages/Profile/Profile";
-import Settings from "./pages/Settings/Settings";
-import Signup from "./pages/Signup/Signup";
-import Login from "./pages/Login/Login";
+import Landing from "pages/Landing/Landing";
+import Feed from "pages/Feed/Feed";
+import Resources from "pages/Resources/Resources";
+import Training from "pages/Training/Training";
+import Profile from "pages/Profile/Profile";
+import Settings from "pages/Settings/Settings";
+import Signup from "pages/Signup/Signup";
+import Login from "pages/Login/Login";
 
 const App = () => {
     const dispatch = useDispatch();

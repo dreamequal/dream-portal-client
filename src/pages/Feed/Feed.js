@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 
-import Container from "../../components/layout/Container/Container";
-import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
-import ProfileCard from "../../components/ProfileCard/ProfileCard";
-import Composer from "../../components/Composer/Composer";
-import Feed, { ItemTypes } from "../../components/Feed/Feed";
-import FeedItem from "../../components/Feed/FeedItem/FeedItem";
-import Alert, { Types } from "../../components/general/Alert/Alert";
+import Container from "components/layout/Container/Container";
+import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
+import ProfileCard from "components/ProfileCard/ProfileCard";
+import Composer from "components/Composer/Composer";
+import Feed, { ItemTypes } from "components/Feed/Feed";
+import FeedItem from "components/Feed/FeedItem/FeedItem";
+import Alert, { Types } from "components/general/Alert/Alert";
 
-import { fetchUser } from "../../stores/User/UserEffects";
-import { fetchPosts, createPost } from "../../stores/Post/PostEffects";
+import { fetchUser } from "stores/User/UserEffects";
+import { fetchPosts, createPost } from "stores/Post/PostEffects";
 
-import { getToken, getInitials } from "../../utils/profile";
+import { getToken, getInitials } from "utils/profile";
 
 
 const FeedPage = () => {

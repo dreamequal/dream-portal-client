@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Wizard, { Step } from "../../../components/general/Wizard/Wizard";
+import Wizard, { Step } from "components/general/Wizard/Wizard";
 
 const PoliciesWizard = ({
     onComplete,

@@ -5,20 +5,20 @@ import {
     fetchResources,
     createResource,
     resetCreateResource
-} from "../../stores/Resource/ResourceEffects";
-import { fetchCategories } from "../../stores/ResourceCategory/ResourceCategoryEffects";
-import { fetchUser } from "../../stores/User/UserEffects";
+} from "stores/Resource/ResourceEffects";
+import { fetchCategories } from "stores/ResourceCategory/ResourceCategoryEffects";
+import { fetchUser } from "stores/User/UserEffects";
 
-import { getToken } from "../../utils/profile";
-import { getExtensionIcon } from "../../utils/file";
+import { getToken } from "utils/profile";
+import { getExtensionIcon } from "utils/file";
 
-import Icon from "../../components/general/Icon/Icon";
-import Hero from "../../components/layout/Hero/Hero";
-import Container from "../../components/layout/Container/Container";
-import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
-import Card, { CardBody } from "../../components/layout/Card/Card";
-import Modal from "../../components/general/Modal/Modal";
-import Alert, { Types as AlertTypes } from "../../components/general/Alert/Alert";
+import Icon from "components/general/Icon/Icon";
+import Hero from "components/layout/Hero/Hero";
+import Container from "components/layout/Container/Container";
+import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
+import Card, { CardBody } from "components/layout/Card/Card";
+import Modal from "components/general/Modal/Modal";
+import Alert, { Types as AlertTypes } from "components/general/Alert/Alert";
 
 const UploadResourceModal = ({
     onClose,

@@ -2,12 +2,12 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import Hero from "../../components/layout/Hero/Hero";
-import ProfileCard from "../../components/ProfileCard/ProfileCard";
-import Container from "../../components/layout/Container/Container";
-import Row, { Column, ColumnSizes } from "../../components/layout/Row/Row";
-import Card, { CardBody, Types } from "../../components/layout/Card/Card";
-import Icon from "../../components/general/Icon/Icon";
+import Hero from "components/layout/Hero/Hero";
+import ProfileCard from "components/ProfileCard/ProfileCard";
+import Container from "components/layout/Container/Container";
+import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
+import Card, { CardBody, Types } from "components/layout/Card/Card";
+import Icon from "components/general/Icon/Icon";
 
 const LandingPage = () => {
     return (
