@@ -5,10 +5,10 @@
         "module": "commonjs"
     },
     "paths": {
-        "components*": ["components*"],
-        "config*": ["config*"],
-        "pages*": ["pages*"],
-        "stores*": ["stores*"],
-        "utils*": ["utils*"]
+        "components/**/*": ["components/**/*"],
+        "config/**/*": ["config/**/*"],
+        "pages/**/*": ["pages/**/*"],
+        "stores/**/*": ["stores/**/*"],
+        "utils/**/*": ["utils/**/*"]
     }
 }
