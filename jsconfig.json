@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
+        "baseUrl": "src",
         "target": "es6",
-        "module": "commonjs",
-        "paths": {
-            "components*": ["components*"],
-            "config*": ["config*"],
-            "pages*": ["pages*"],
-            "stores*": ["stores*"],
-            "utils*": ["utils*"]
-        }
+        "module": "commonjs"
+    },
+    "paths": {
+        "components*": ["components*"],
+        "config*": ["config*"],
+        "pages*": ["pages*"],
+        "stores*": ["stores*"],
+        "utils*": ["utils*"]
     }
 }
