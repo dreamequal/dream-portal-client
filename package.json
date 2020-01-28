@@ -41,7 +41,6 @@
 		]
 	},
 	"devDependencies": {
-		"babel-preset-react-app": "^7.0.0",
 		"chai": "^4.2.0",
 		"enzyme": "^3.10.0",
 		"enzyme-adapter-react-16": "^1.14.0"
