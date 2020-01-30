@@ -36,6 +36,14 @@ Card.propTypes = {
     className: PropTypes.string,
 };
 
+export const CardHeader = ({
+    children,
+}) => (
+    <div className="card-header">
+        {children}
+    </div>
+);
+
 export const CardBody = ({
     children,
 }) => (

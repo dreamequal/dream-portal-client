@@ -5,9 +5,8 @@ import 'moment-timezone';
 
 import Icon from "../../general/Icon/Icon";
 import Avatar, { Sizes } from "../../general/Avatar/Avatar";
-import Card, { CardBody } from "../../layout/Card/Card";
-
-import { ItemTypes } from '../Feed';
+import Card, { CardBody, CardHeader } from "../../layout/Card/Card";
+import FlexRow, { AlignItemsOptions } from 'components/layout/FlexRow/FlexRow';
 
 const FeedItem = ({
     author,
@@ -17,13 +16,8 @@ const FeedItem = ({
     type,
 }) => (
     <Card>
-        { type === ItemTypes.ANNOUNCEMENT &&
-            <span className="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-info text-white">
-                <Icon name="bullhorn"/>
-            </span>
-        }
-        <div className="card-header py-2 d-flex align-items-center mt-n4">
-            <div className="d-flex align-items-center">
+        <CardHeader>
+            <FlexRow alignItems={AlignItemsOptions.CENTER}>
                 <Avatar
                     initials={initials}
                     size={Sizes.MD}
@@ -37,8 +31,8 @@ const FeedItem = ({
                         </span>
                     </small>
                 </div>
-            </div>
-        </div>
+            </FlexRow>
+        </CardHeader>
         <CardBody>
             <p className="card-text">
                 {body}

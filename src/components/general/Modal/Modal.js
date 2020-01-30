@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import Button, { Sizes, Types } from "components/actions/Button/Button";
 
 const Modal = ({
     children,
@@ -37,22 +38,20 @@ const Modal = ({
                             {children}
                         </div>
                         <div className="modal-footer">
-                            <button
-                                type="button"
-                                className="btn btn-sm btn-outline-danger"
+                            <Button
+                                label="Close"
+                                size={Sizes.SM}
+                                type={Types.DANGER}
                                 onClick={onClose}
-                            >
-                                Close
-                            </button>
+                            />
                             { onAction && actionText && (
-                                <button
-                                    type="button"
-                                    className="btn btn-primary btn-sm"
+                                <Button
+                                    label={actionText}
+                                    size={Sizes.SM}
+                                    type={Types.PRIMARY}
                                     onClick={onAction}
                                     disabled={actionDisabled}
-                                >
-                                    {actionText}
-                                </button>
+                                />
                             )}
                         </div>
                     </div>

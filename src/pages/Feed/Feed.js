@@ -14,6 +14,8 @@ import { fetchUser } from "stores/User/UserEffects";
 import { fetchPosts, createPost } from "stores/Post/PostEffects";
 
 import { getToken, getInitials } from "utils/profile";
+import FlexRow, { JustifyOptions } from "components/layout/FlexRow/FlexRow";
+import Icon from "components/general/Icon/Icon";
 
 
 const FeedPage = () => {
@@ -81,11 +83,11 @@ const FeedPage = () => {
                         lastName={user.lastName}
                         username={user.username}
                         footer={
-                            <div className="actions d-flex justify-content-center">
+                            <FlexRow justifyContent={JustifyOptions.CENTER} className="actions">
                                 <Link to="/settings" className="action-item">
-                                    <i className="fas fa-user-edit"></i>
+                                    <Icon name="user-edit"/>
                                 </Link>
-                            </div>
+                            </FlexRow>
                         }
                     />
                 </Column>

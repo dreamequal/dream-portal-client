@@ -49,4 +49,8 @@ Avatar.propTypes = {
     onClick: PropTypes.func,
 };
 
+Avatar.defaultProps = {
+    size: Sizes.MD,
+};
+
 export default Avatar;

@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FeedItem from './FeedItem/FeedItem';
+import FlexRow, { JustifyOptions } from 'components/layout/FlexRow/FlexRow';
+import Loader from 'components/general/Loader/Loader';
+import Button, { Types } from 'components/actions/Button/Button';
 
 export const ItemTypes = {
     ANNOUNCEMENT: 'announcement',
@@ -15,9 +18,9 @@ const Feed = ({
 }) => {
     if (loading) {
         return (
-            <div className="text-center">
-                <div className="spinner-grow" role="status"></div>
-            </div>
+            <FlexRow justifyContent={JustifyOptions.CENTER}>
+                <Loader/>
+            </FlexRow>
         );
     }
 
@@ -30,16 +33,14 @@ const Feed = ({
                 />
             ))}
 
-            { showNext &&
-                <div className="text-center">
-                    <button
-                        type="button"
-                        className="btn btn-link text-muted"
+            {showNext &&
+                <FlexRow justifyContent={JustifyOptions.CENTER}>
+                    <Button
+                        label="Load More"
+                        type={Types.LINK}
                         onClick={onNext}
-                    >
-                        Load More
-                    </button>
-                </div>
+                    />
+                </FlexRow>
             }
         </div>
     );

@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 
 import Card, { CardBody, CardFooter } from "components/layout/Card/Card";
 import Modal from "components/general/Modal/Modal";
+import TextArea from "components/inputs/TextArea/TextArea";
+import Button, { Sizes } from "components/actions/Button/Button";
+import FlexRow, { JustifyOptions } from "components/layout/FlexRow/FlexRow";
 
 const Composer = ({
     placeholder,
@@ -39,26 +42,23 @@ const Composer = ({
         <>
             <Card>
                 <CardBody>
-                    <textarea
-                        className="form-control"
+                    <TextArea
                         placeholder={placeholder}
                         onChange={handleValueChange}
                         value={value}
                         rows={rows}
-                        resize="none"
-                    >
-                    </textarea>
+                        resize={false}
+                    />
                 </CardBody>
                 <CardFooter>
-                    <div className="text-right">
-                        <button
-                            className="btn btn-primary btn-sm"
+                    <FlexRow justifyContent={JustifyOptions.END}>
+                        <Button
+                            label={submitText}
+                            size={Sizes.SM}
                             onClick={handleSubmitClick}
                             disabled={value.trim() === ""}
-                        >
-                            {submitText}
-                        </button>
-                    </div>
+                        />
+                    </FlexRow>
                 </CardFooter>
             </Card>
             {confirmModalOpen && (
