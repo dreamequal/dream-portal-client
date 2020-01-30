@@ -6,7 +6,7 @@ import { fetchUser, updateUser } from "stores/User/UserEffects";
 import Container from "components/layout/Container/Container";
 import Card, { CardBody } from "components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
-import Loading from "components/general/Loading/Loading";
+import Loader from "components/general/Loader/Loader";
 import Alert, { Types as AlertTypes } from "components/general/Alert/Alert";
 
 import { getToken } from "utils/profile";
@@ -32,7 +32,7 @@ const SignupPage = () => {
     useEffect(() => setUsernameValue(user.username), [user.username]);
 
     if (isLoading || !user) {
-        return <Loading/>;
+        return <Loader/>;
     }
 
     const onUpdateUser = (e) => {
