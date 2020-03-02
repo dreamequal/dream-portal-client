@@ -28,7 +28,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </Hero>,
-            <Container classNames="w-50">
+            <Container>
                 <div className="slice slice-md">
                     <Row>
                         <Column size={ColumnSizes.TWELVE}>
@@ -51,8 +51,8 @@ const LandingPage = () => {
                                 displayed on your profile and to your Chapter leads.
                             </p>
                         </Column>
-                        <Column size={ColumnSizes.FOUR}>
-                            <Card type={Types.WARNING}>
+                        <Column size={ColumnSizes.FOUR} className="d-none d-sm-block">
+                            <Card type={Types.INFO}>
                                 <CardBody>
                                     <div className="d-flex">
                                         <div>
@@ -72,7 +72,7 @@ const LandingPage = () => {
                 </div>
                 <div className="slice slice-md">
                     <Row>
-                        <Column size={ColumnSizes.FOUR}>
+                        <Column size={ColumnSizes.FOUR} className="d-none d-sm-block">
                             <ProfileCard
                                 firstName="Jane"
                                 lastName="Doe"
@@ -98,7 +98,7 @@ const LandingPage = () => {
                                 resources.
                             </p>
                         </Column>
-                        <Column size={ColumnSizes.FOUR}>
+                        <Column size={ColumnSizes.FOUR} className="d-none d-sm-block">
                             <div className="text-center display-3 text-info">
                                 <Icon name="bullhorn"/>
                             </div>

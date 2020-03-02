@@ -4,9 +4,9 @@ import classnames from "classnames";
 
 const Container = ({
     children,
-    classNames
+    className
 }) => (
-    <div className={classnames("container", "mt-5", classNames)}>
+    <div className={classnames("container", "mt-5", className)}>
         {children}
     </div>
 );
