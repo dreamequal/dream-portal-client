@@ -8,6 +8,9 @@ import Card, { CardBody } from "components/layout/Card/Card";
 import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
 import Loader from "components/general/Loader/Loader";
 import Alert, { Types as AlertTypes } from "components/general/Alert/Alert";
+import TextField from "components/inputs/TextField/TextField";
+import DatePicker from "components/inputs/DatePicker/DatePicker";
+import Dropdown from "components/inputs/Dropdown/Dropdown";
 
 import { getToken } from "utils/profile";
 
@@ -22,6 +25,9 @@ const SignupPage = () => {
     const [ firstNameValue, setFirstNameValue ] = useState("");
     const [ lastNameValue, setLastNameValue ] = useState("");
     const [ usernameValue, setUsernameValue ] = useState("");
+    const [ locationValue, setLocationValue ] = useState("");
+    const [ pronounValue, setPronounValue ] = useState("");
+    const [ birthdayValue, setBirthdayValue ] = useState("");
 
     // Pull user
     useEffect(() => dispatch(fetchUser(getToken())), [dispatch]);
@@ -30,6 +36,9 @@ const SignupPage = () => {
     useEffect(() => setFirstNameValue(user.firstName), [user.firstName]);
     useEffect(() => setLastNameValue(user.lastName), [user.lastName]);
     useEffect(() => setUsernameValue(user.username), [user.username]);
+    useEffect(() => setLocationValue(user.location), [user.location]);
+    useEffect(() => setPronounValue(user.pronouns), [user.pronouns]);
+    useEffect(() => setBirthdayValue(user.birthday), [user.birthday]);
 
     if (isLoading || !user) {
         return <Loader/>;
@@ -43,6 +52,9 @@ const SignupPage = () => {
             firstName: firstNameValue,
             lastName: lastNameValue,
             username: usernameValue,
+            location: locationValue,
+            pronouns: pronounValue,
+            birthday: birthdayValue,
         }));
     };
 
@@ -68,33 +80,50 @@ const SignupPage = () => {
                                 )
                             }
                             <form onSubmit={onUpdateUser}>
-                                <div className="form-group">
-                                    <label className="form-control-label">First Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={firstNameValue}
-                                        onChange={(e) => setFirstNameValue(e.target.value)}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Last Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={lastNameValue}
-                                        onChange={(e) => setLastNameValue(e.target.value)}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-control-label">Username</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={usernameValue}
-                                        onChange={(e) => setUsernameValue(e.target.value)}
-                                    />
-                                </div>
+                                <TextField
+                                    label="First Name"
+                                    value={firstNameValue}
+                                    error={!firstNameValue}
+                                    onChange={(e) => setFirstNameValue(e.target.value)}
+                                />
+                                <TextField
+                                    label="Last Name"
+                                    value={lastNameValue}
+                                    error={!lastNameValue}
+                                    onChange={(e) => setLastNameValue(e.target.value)}
+                                />
+                                 <TextField
+                                    label="Username"
+                                    value={usernameValue}
+                                    error={!usernameValue}
+                                    onChange={(e) => setUsernameValue(e.target.value)}
+                                />
+                                <TextField
+                                    label="Location"
+                                    placeholder="Lincoln, NE"
+                                    value={locationValue}
+                                    error={!locationValue}
+                                    onChange={(e) => setLocationValue(e.target.value)}
+                                />
+                                <Dropdown
+                                    label="Pronouns"
+                                    value={pronounValue}
+                                    error={!pronounValue}
+                                    onChange={(e) => setPronounValue(e.target.value)}
+                                    options={[
+                                        { label: "", value: "" },
+                                        { label: "She/Her", value: "she/her" },
+                                        { label: "He/Him", value: "he/him" },
+                                        { label: "They/Them", value: "they/them" },
+                                        { label: "Other", value: "Other" },
+                                    ]}
+                                />
+                                <DatePicker
+                                    label="Birthday"
+                                    value={birthdayValue}
+                                    error={!birthdayValue}
+                                    onChange={(e) => setBirthdayValue(e.target.value)}
+                                />
                                 <div className="text-right">
                                     <button
                                         type="submit"

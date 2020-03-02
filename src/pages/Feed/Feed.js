@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 
+import Button, { Types as ButtonTypes } from "components/actions/Button/Button";
 import Container from "components/layout/Container/Container";
 import Row, { Column, ColumnSizes } from "components/layout/Row/Row";
 import ProfileCard from "components/ProfileCard/ProfileCard";
 import Composer from "components/Composer/Composer";
 import Feed, { ItemTypes } from "components/Feed/Feed";
 import FeedItem from "components/Feed/FeedItem/FeedItem";
-import Alert, { Types } from "components/general/Alert/Alert";
+import Alert, { Types as AlertTypes } from "components/general/Alert/Alert";
 
 import { fetchUser } from "stores/User/UserEffects";
 import { fetchAnnouncements, createAnnouncement } from "stores/Announcement/AnnouncementEffects";
@@ -75,6 +76,18 @@ const FeedPage = () => {
 
     return (
         <Container>
+            {!user.profileComplete ? (
+                <Alert
+                    type={AlertTypes.ERROR}
+                    accessories={(
+                        <Link to="/settings" className="btn btn-danger">
+                            Finish Profile
+                        </Link>
+                    )}
+                >
+                    You need to complete your profile in order to use the Portal.
+                </Alert>
+            ) : null}
             <Row>
                 <Column size={ColumnSizes.THREE}>
                     <ProfileCard
@@ -82,6 +95,7 @@ const FeedPage = () => {
                         firstName={user.firstName}
                         lastName={user.lastName}
                         username={user.username}
+                        pronouns={user.pronouns}
                         footer={
                             <FlexRow justifyContent={JustifyOptions.CENTER} className="actions">
                                 <Link to="/settings" className="action-item">
@@ -92,8 +106,8 @@ const FeedPage = () => {
                     />
                 </Column>
                 <Column size={ColumnSizes.NINE}>
-                    { createAnnouncementSuccess && <Alert type={Types.SUCCESS} text="Announcement created successfully"/>}
-                    { createAnnouncementError && <Alert type={Types.ERROR} text={createAnnouncementError} />}
+                    { createAnnouncementSuccess && <Alert type={AlertTypes.SUCCESS} text="Announcement created successfully"/>}
+                    { createAnnouncementError && <Alert type={AlertTypes.ERROR} text={createAnnouncementError} />}
                     { user.permissions > 1 &&
                         <Composer
                             placeholder="New announcement..."

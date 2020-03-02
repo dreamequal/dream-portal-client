@@ -9,10 +9,12 @@ export const Types = {
 };
 
 const Alert = ({
+    accessories,
+    children,
     text,
     type,
 }) => {
-    const classnames = classNames("alert", {
+    const classnames = classNames("alert", "alert-group", {
         "alert-danger": type === Types.ERROR,
         "alert-warning": type === Types.WARNING,
         "alert-success": type === Types.SUCCESS,
@@ -20,7 +22,16 @@ const Alert = ({
 
     return (
         <div className={classnames} role="alert">
-            {text}
+            <div class="alert-content">
+                {text}
+                {children}
+            </div>
+
+            { accessories ? (
+                <div class="alert-action">
+                    {accessories}
+                </div>
+            ) : null }
         </div>
     );
 };
