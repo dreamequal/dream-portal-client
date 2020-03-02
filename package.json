@@ -6,6 +6,7 @@
     "axios": "^0.19.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.6.1",
+    "heroku-ssl-redirect": "0.0.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "prop-types": "^15.7.2",
@@ -23,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "npm run build && npx http-server ./build -p $PORT -S",
+    "serve": "node server.js",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
   },
