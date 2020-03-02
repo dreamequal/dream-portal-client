@@ -30,10 +30,12 @@ const ProfileCard = ({
                     />
 
                     <h5 className="mt-3 mb-0">{firstName} {lastName}</h5>
-                    <span className="d-block text-sm text-muted mb-3">({pronouns})</span>
-                    { username &&
+                    {pronouns ? (
+                        <span className="d-block text-sm text-muted mb-3">({pronouns})</span>
+                    ) : null}
+                    {username ? (
                         <span className="d-block text-sm text-muted mb-3">@{username}</span>
-                    }
+                    ) : null}
                     {footer}
                 </>
             )}

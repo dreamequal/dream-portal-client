@@ -31,7 +31,7 @@ const ProfilePage = () => {
                     />
                     <div className="ml-4">
                         <h2 className="text-white mb-0">
-                            {user.firstName} {user.lastName} ({user.pronouns})
+                            {user.firstName} {user.lastName} {user.pronouns ? `(${user.pronouns})` : null}
                         </h2>
                         <small className="text-white">
                             @{user.username}
