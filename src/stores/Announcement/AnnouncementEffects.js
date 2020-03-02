@@ -2,20 +2,20 @@ import { ApiFetch } from "../../utils/api";
 
 import {
     // Fetch
-    fetchPostsPending,
-    fetchPostsSuccess,
-    fetchPostsError,
+    fetchAnnouncementsPending,
+    fetchAnnouncementsSuccess,
+    fetchAnnouncementsError,
     // Create
-    createPostPending,
-    createPostSuccess,
-    createPostError,
-} from "./PostActions";
+    createAnnouncementPending,
+    createAnnouncementSuccess,
+    createAnnouncementError,
+} from "./AnnouncementActions";
 
-export const fetchPosts = (token, page, perPage) => {
+export const fetchAnnouncements = (token, page, perPage) => {
     return dispatch => {
-        dispatch(fetchPostsPending());
+        dispatch(fetchAnnouncementsPending());
 
-        ApiFetch("posts", {
+        ApiFetch("announcements", {
             method: "GET",
             headers: {
                 Authorization: `JWT ${token}`,
@@ -30,37 +30,37 @@ export const fetchPosts = (token, page, perPage) => {
                 if (res.error) {
                     throw(res.error);
                 }
-                dispatch(fetchPostsSuccess(res));
+                dispatch(fetchAnnouncementsSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(fetchPostsError(error));
+                dispatch(fetchAnnouncementsError(error));
             })
     }
 };
 
-export const createPost = (token, post) => {
+export const createAnnouncement = (token, announcement) => {
     return dispatch => {
-        dispatch(createPostPending());
+        dispatch(createAnnouncementPending());
 
-        ApiFetch("posts", {
+        ApiFetch("announcements", {
             method: "POST",
             headers: {
                 Authorization: `JWT ${token}`,
                 "Content-Type": "application/json"
             },
-            data: { content: post },
+            data: { content: announcement },
         })
             .then(res => res.data)
             .then(res => {
                 if (res.message) {
                     throw(res.message);
                 }
-                dispatch(createPostSuccess(res));
+                dispatch(createAnnouncementSuccess(res));
                 return res;
             })
             .catch(error => {
-                dispatch(createPostError(error));
+                dispatch(createAnnouncementError(error));
             })
     }
 };

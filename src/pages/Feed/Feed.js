@@ -11,7 +11,7 @@ import FeedItem from "components/Feed/FeedItem/FeedItem";
 import Alert, { Types } from "components/general/Alert/Alert";
 
 import { fetchUser } from "stores/User/UserEffects";
-import { fetchPosts, createPost } from "stores/Post/PostEffects";
+import { fetchAnnouncements, createAnnouncement } from "stores/Announcement/AnnouncementEffects";
 
 import { getToken, getInitials } from "utils/profile";
 import FlexRow, { JustifyOptions } from "components/layout/FlexRow/FlexRow";
@@ -22,24 +22,24 @@ const FeedPage = () => {
     // Pagination
     const perPage = 10;
     const [page, setPage] = useState(0);
-    const [digestedPosts, setDigestedPosts] = useState([]);
+    const [digestedAnnouncements, setDigestedAnnouncements] = useState([]);
 
     // Loading states
     const isUserLoading = useSelector(state => state.user.fetch.isLoading);
-    const isPostsLoading = useSelector(state => state.posts.fetch.isLoading);
-    const createPostSuccess = useSelector(state => state.posts.create.success);
-    const createPostError = useSelector(state => state.posts.create.error);
-    const pageCount = useSelector(state => state.posts.pageCount);
+    const isAnnouncementsLoading = useSelector(state => state.announcements.fetch.isLoading);
+    const createAnnouncementSuccess = useSelector(state => state.announcements.create.success);
+    const createAnnouncementError = useSelector(state => state.announcements.create.error);
+    const pageCount = useSelector(state => state.announcements.pageCount);
 
     const user = useSelector(state => state.user.profile);
-    const posts = useSelector(state => state.posts.posts);
+    const announcements = useSelector(state => state.announcements.announcements);
 
     const [composerValue, setComposerValue] = useState("");
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const digested = posts.map((post) => {
+        const digested = announcements.map((post) => {
             return {
                 id: post._id,
                 author: `${post.postedBy.firstName} ${post.postedBy.lastName}`,
@@ -49,27 +49,27 @@ const FeedPage = () => {
                 type: ItemTypes.ANNOUNCEMENT
             };
         });
-        setDigestedPosts(digested);
-    }, [posts]);
+        setDigestedAnnouncements(digested);
+    }, [announcements]);
 
     // Get user
     useEffect(() => {
         dispatch(fetchUser(getToken()));
     }, [dispatch]);
 
-    // Get posts on load/page change
+    // Get announcements on load/page change
     useEffect(() => {
-        dispatch(fetchPosts(getToken(), page, perPage));
+        dispatch(fetchAnnouncements(getToken(), page, perPage));
     }, [dispatch, page, perPage]);
 
-    // Create new post
-    const submitPost = () => {
-        dispatch(createPost(getToken(), composerValue));
+    // Create new announcement
+    const submitAnnouncement = () => {
+        dispatch(createAnnouncement(getToken(), composerValue));
         setComposerValue("");
     }
 
-    // Load more posts
-    const loadMorePosts = () => {
+    // Load more announcements
+    const loadMoreAnnouncements = () => {
         setPage(page + 1);
     }
 
@@ -92,8 +92,8 @@ const FeedPage = () => {
                     />
                 </Column>
                 <Column size={ColumnSizes.NINE}>
-                    { createPostSuccess && <Alert type={Types.SUCCESS} text="Post created successfully"/>}
-                    { createPostError && <Alert type={Types.ERROR} text={createPostError} />}
+                    { createAnnouncementSuccess && <Alert type={Types.SUCCESS} text="Announcement created successfully"/>}
+                    { createAnnouncementError && <Alert type={Types.ERROR} text={createAnnouncementError} />}
                     { user.permissions > 1 &&
                         <Composer
                             placeholder="New announcement..."
@@ -116,14 +116,14 @@ const FeedPage = () => {
                             }
                             value={composerValue}
                             onValueChange={(value) => setComposerValue(value)}
-                            onSubmitClick={submitPost}
+                            onSubmitClick={submitAnnouncement}
                         />
                     }
                     <Feed
-                        items={digestedPosts}
+                        items={digestedAnnouncements}
                         showNext={pageCount > page}
-                        loading={isPostsLoading}
-                        onNext={loadMorePosts}
+                        loading={isAnnouncementsLoading}
+                        onNext={loadMoreAnnouncements}
                     />
                 </Column>
             </Row>
