@@ -113,7 +113,13 @@ const SignupPage = () => {
                                     options={[
                                         { label: "", value: "" },
                                         { label: "She/Her", value: "she/her" },
+                                        { label: "She/They", value: "she/they" },
                                         { label: "He/Him", value: "he/him" },
+                                        { label: "He/They", value: "he/they" },
+                                        { label: "Ve/Ver", value: "ve/ver" },
+                                        { label: "Xe/Xem", value: "xe/xem" },
+                                        { label: "Ze/Hir", value: "ze/hir" },
+                                        { label: "Ze/Zir", value: "ze/zir" },
                                         { label: "They/Them", value: "they/them" },
                                         { label: "Other", value: "Other" },
                                     ]}
