@@ -26,12 +26,6 @@ const App = () => {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            dispatch(push("/"));
-        }
-    }, [isAuthenticated, dispatch]);
-
     const logout = () => {
         dispatch(logoutUser());
     }
